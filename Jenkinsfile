@@ -14,7 +14,6 @@ pipeline {
       steps {
         echo 'deploy'
         bat "run.bat"
-        bat "npm start"
       }
     }
   }

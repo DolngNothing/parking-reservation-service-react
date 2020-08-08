@@ -4,4 +4,4 @@ if not "%pid%" == "" (
 ) else (
   rem echo Server is not running.
 )
-start /b npm start
+start /b npm react-scripts start

@@ -7,13 +7,12 @@ pipeline {
     stage('build') {
       steps {
         echo 'build'
-        bat 'npm install'
+        bat 'npm install -gd express --registry=http://registry.npm.taobao.org'
       }
     }
     stage('deploy') {
       steps {
         echo 'deploy'
-        bat "copy build\\libs\\*.jar d:\\deploy\\"
         bat "run.bat"
         bat "npm start"
       }

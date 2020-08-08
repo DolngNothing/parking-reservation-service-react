@@ -4,16 +4,10 @@ pipeline {
     JENKINS_NODE_COOKIE = "donotkillme"
   }
   stages {
-    stage('test') {
-      steps {
-        echo 'test'
-        bat './gradlew test'
-      }
-    }
     stage('build') {
       steps {
         echo 'build'
-        bat './gradlew build'
+        bat 'npm install'
       }
     }
     stage('deploy') {
@@ -21,6 +15,7 @@ pipeline {
         echo 'deploy'
         bat "copy build\\libs\\*.jar d:\\deploy\\"
         bat "run.bat"
+        bat "npm start"
       }
     }
   }

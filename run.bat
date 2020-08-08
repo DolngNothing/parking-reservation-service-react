@@ -5,5 +5,4 @@ if not "%pid%" == "" (
 ) else (
   rem echo Server is not running.
 )
-npm start
-pause
+start /b npm start

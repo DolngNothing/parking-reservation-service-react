@@ -1,0 +1,66 @@
+@import '../../css/global.scss';
+.search-show-wrapper {
+    width: 20%;
+    height: 92%;
+    overflow-y: scroll;
+    background-color: #eee;
+    border-right: 1px solid #aaa;
+    box-sizing: border-box;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    .address-wrapper {
+        width: 92%;
+        height: 60px;
+        color: #666;
+        font-size: 12px;
+        font-weight: bolder;
+        background: #ddd;
+        border-radius: 20px;
+        margin-top: 10px;
+        @include center();
+        flex-direction: column;
+        .customer-address {
+            width: 80%;
+            height: 50%;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #aaa;
+            text-align: left;
+            .address-title {
+                width: 42px;
+            }
+            .address-text {
+                color: black;
+                font-weight: bolder;
+            }
+        }
+        .destination-address {
+            width: 80%;
+            height: 50%;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            .address-title {
+                width: 42px;
+                display: block;
+                height: 16px;
+            }
+            .address-text {
+                color: black;
+                font-weight: bolder;
+                margin-left: 2px;
+            }
+        }
+    }
+    .show-wrapper {
+        
+    }
+}

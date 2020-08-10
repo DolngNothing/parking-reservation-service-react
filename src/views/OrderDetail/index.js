@@ -19,7 +19,7 @@ class OrderDetail extends React.Component {
             },
             isComfirmBtnShow: 'none',
             isCancelBtnShow: 'inline-block'
-        };
+        }
     }
 
 
@@ -28,42 +28,42 @@ class OrderDetail extends React.Component {
             message: 'Success',
             description:
                 '预约成功！',
-        });
+        })
         this.setState({
             isComfirmBtnShow: 'none'
         })
         this.setState((prev) => ({
             order: { ...prev.order, status: true }
-        }));
+        }))
     }
 
     cancelOrder = () => {
-        let date = new Date().getTime();
-        console.log(date);
+        let date = new Date().getTime()
+        console.log(date)
 
         // if (date >= this.order.startTime.valueOf()) {
         //     notification['warning']({
         //         message: 'Notification Title',
         //         description:'已超时，无法取消预约！',
-        //     });
+        //     })
         //     this.setState({
         //         isCancelBtnShow: 'none'
-        //     });
+        //     })
         // }
 
         if (date >= 1597044772906) {
             notification['warning']({
                 message: 'Sorry',
                 description: '已超时，无法取消预约！',
-            });
+            })
             this.setState({
                 isCancelBtnShow: 'none'
-            });
+            })
         } else {
             notification['success']({
                 message: 'Success',
                 description: '取消成功！',
-            });
+            })
         }
     }
 
@@ -71,18 +71,18 @@ class OrderDetail extends React.Component {
         if (this.state.order.status === false) {
             this.setState({
                 isComfirmBtnShow: 'inline-block'
-            });
+            })
         }
         // if (new Date() >= this.order.startTime.valueOf()) {
         //     this.setState({
         //         isCancelBtnShow: 'none'
-        //     });
+        //     })
         // }
 
         if (new Date() >= 2597044772906) {
             this.setState({
                 isCancelBtnShow: 'none'
-            });
+            })
         }
     }
 
@@ -121,7 +121,7 @@ class OrderDetail extends React.Component {
 
 
             </div>
-        );
+        )
     }
 }
 

@@ -1,0 +1,27 @@
+.container {
+    width: 90%;
+    margin: 0 auto;
+    padding: 15px 0;
+}
+
+.ant-descriptions-bordered .ant-descriptions-view {
+    margin-bottom: 45px;
+}
+
+.ant-descriptions-title{
+    flex:none !important;
+    margin-top: 15px !important;
+}
+
+.btn-div .ant-btn{
+    margin: 0 15px !important;
+    width: 230px !important;
+}
+
+.ant-alert-with-description{
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%,-50%) !important;
+    width: 60% !important;
+}

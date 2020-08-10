@@ -61,7 +61,35 @@ class TopNavigation extends React.Component {
       });
   }
 
-
+  selectAddress = (e) => {
+    var map = this.props.BMap;       
+    map.clearOverlays(); 
+    let geocoder = new AMap.Geocoder();
+    this.setState({
+      address: e.target.textContent
+    })
+    document.getElementsByClassName("address-input")[0].value = e.target.textContent
+    geocoder.getLocation(e.target.textContent, (status, result) => {
+    if (status === 'complete' && result.geocodes.length) {
+        console.log("地址: "+result.geocodes[0].formattedAddress)
+        const lnglat = result.geocodes[0].location;
+        this.props.setDestination(result.geocodes[0].formattedAddress)
+        const lat = lnglat.lat; // 纬度
+        const lng = lnglat.lng;// 经度
+        console.log(`经度为:${lng}, 纬度为:${lat}`);
+        var pointCustomer = new BMap.Point(this.props.lng, this.props.lat);
+        var customerMarker = new BMap.Marker(pointCustomer);
+        map.addOverlay(customerMarker);
+        var addressPoint = new BMap.Point(lng, lat);
+        var addressMarker = new BMap.Marker(addressPoint);
+        map.centerAndZoom(new BMap.Point(lng, lat), 16);
+        map.addOverlay(addressMarker);
+      } 
+        this.setState({
+          regAddress: [],
+        })
+      });
+  }
 
   handleEnterKey = (e) => {
       if(e.nativeEvent.keyCode === 13){
@@ -86,7 +114,7 @@ class TopNavigation extends React.Component {
                             onKeyPress={this.handleEnterKey}
                             placeholder="请输入目的地"/>
                     <div className="reg-address-list">
-                      {this.state.regAddress.map(item => <div className="r-result"><span>{item}</span></div>)}
+                      {this.state.regAddress.map((item, index) => <div className="r-result" key={index}><span onClick={this.selectAddress} className="reg-address">{item}</span></div>)}
                     </div>
                     
                 </div>

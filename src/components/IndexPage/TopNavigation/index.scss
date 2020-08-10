@@ -9,6 +9,7 @@
   box-sizing: border-box;
   border-bottom: 1px solid #aaa;
   background-color: #eee;
+  z-index: 100;
   @include center();
   justify-content: flex-start;
   .about-team {
@@ -35,6 +36,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      position: relative;
       .address-input {
           width: 450px;
           height: 90%;
@@ -69,6 +71,26 @@
           color: #999;
           line-height: 20px;
           @include center();
+      }
+      .reg-address-list {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 500px;
+        background:white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .r-result {
+          height: 50px;
+          width: 470px;
+          border-bottom: 1px solid ;
+          display: flex;
+          align-items: center;
+          &:last-child {
+            border-bottom: none;
+          }
+        }
       }
   }
 }

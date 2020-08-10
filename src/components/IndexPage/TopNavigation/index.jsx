@@ -15,17 +15,19 @@ class TopNavigation extends React.Component {
 
   onChange = (e) => {
     this.setState({
-        address: e.target.value
+        address: e.target.value,
+        regAddress: []
     })
+    let _this = this
     var options = {
       onSearchComplete: function(results){
         // 判断状态是否正确
         if (local.getStatus() == 0){
           var s = [];
           for (var i = 0; i < results.getCurrentNumPois(); i ++){
-            s.push(results.getPoi(i).title + ", " + results.getPoi(i).address);
+            s.push(results.getPoi(i).title);
           }
-          document.getElementById("r-result").innerHTML = s.join("<br/>");
+          _this.setState({regAddress: [...s]})
         }
       }
     };
@@ -83,7 +85,10 @@ class TopNavigation extends React.Component {
                             onChange={this.onChange} 
                             onKeyPress={this.handleEnterKey}
                             placeholder="请输入目的地"/>
-                    {this.state.regAddress.map(item => <div className="r-result"><span>{item}</span></div>)}
+                    <div className="reg-address-list">
+                      {this.state.regAddress.map(item => <div className="r-result"><span>{item}</span></div>)}
+                    </div>
+                    
                 </div>
             </div>
   }

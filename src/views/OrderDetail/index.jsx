@@ -62,8 +62,7 @@ class OrderDetail extends React.Component {
 
 	cancelOrder = () => {
 		const date = new Date().getTime()
-		console.log(date)
-
+		
 		// if (date >= this.order.startTime.valueOf()) {
 		//     notification['warning']({
 		//         message: 'Notification Title',
@@ -91,39 +90,48 @@ class OrderDetail extends React.Component {
 	}
 
 	render() {
+		const { parkingLotName, postion, carNumber, startTime, endTime, phone, mail, cost, status,isComfirmBtnShow,isCancelBtnShow } = this.state
 		return (
   <div className="container">
-				<Descriptions
-					bordered
-					title="订单详情"
-					size="default">
-					<Descriptions.Item label="停车场">{this.state.order.parkingLotName}</Descriptions.Item>
-					<Descriptions.Item label="位置">{this.state.order.postion}</Descriptions.Item>
-					<Descriptions.Item label="车牌号">{this.state.order.carNumber}</Descriptions.Item>
-					<Descriptions.Item label="时间段">{this.state.order.startTime} - {this.state.order.endTime}</Descriptions.Item>
-					<Descriptions.Item label="手机">{this.state.order.phone}</Descriptions.Item>
-					<Descriptions.Item label="邮箱">{this.state.order.mail}</Descriptions.Item>
-					<Descriptions.Item label="费用">{this.state.order.cost}￥</Descriptions.Item>
-					<Descriptions.Item label="订单状态">
-						<span className={this.state.order.status ? "completed" : "uncompleted"}>
-							{this.state.order.status ? "预约成功" : "取消预约"}
-						</span>
-					</Descriptions.Item>
-				</Descriptions>
+    <Descriptions
+      bordered
+      title="订单详情"
+      size="default"
+    >
+      <Descriptions.Item label="停车场">{parkingLotName}</Descriptions.Item>
+      <Descriptions.Item label="位置">{postion}</Descriptions.Item>
+      <Descriptions.Item label="车牌号">{carNumber}</Descriptions.Item>
+      <Descriptions.Item label="时间段">
+        {startTime}
+        {' '}
+        -
+        {' '}
+        {endTime}
+      </Descriptions.Item>
+      <Descriptions.Item label="手机">{phone}</Descriptions.Item>
+      <Descriptions.Item label="邮箱">{mail}</Descriptions.Item>
+      <Descriptions.Item label="费用">
+        {cost}
+        ￥
+      </Descriptions.Item>
+      <Descriptions.Item label="订单状态">
+        <span className={status ? "completed" : "uncompleted"}>
+          {status ? "预约成功" : "取消预约"}
+        </span>
+      </Descriptions.Item>
+    </Descriptions>
 
-				<div className="btn-div">
-					<div onClick={this.comfirmOrder} style={{ display: this.state.isComfirmBtnShow }} className="btn-div-item">
-						<Button type="primary">
-							确认订单
-                        </Button>
-					</div>
-					<div style={{ display: this.state.isCancelBtnShow }} className="btn-div-item">
-						<Button onClick={this.cancelOrder}>取消预约</Button>
-					</div>
-				</div>
-
-
-			</div>
+    <div className="btn-div">
+      <div role="button" onClick={this.comfirmOrder} style={{ display: isComfirmBtnShow }} className="btn-div-item">
+        <Button type="primary">
+          确认订单
+        </Button>
+      </div>
+      <div style={{ display: isCancelBtnShow }} className="btn-div-item">
+        <Button onClick={this.cancelOrder}>取消预约</Button>
+      </div>
+    </div>
+  </div>
 		)
 	}
 }

@@ -6,10 +6,10 @@ class OrderCreatePage extends React.Component{
 
     render(){
         return (
-            <div>
-                <ParkingLotInfo />
-                <BookInfoForm />
-            </div>
+          <div>
+            <ParkingLotInfo />
+            <BookInfoForm />
+          </div>
         );
     }
 }

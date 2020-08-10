@@ -1,6 +1,6 @@
-export const initBMap = (Bmap) => ({
+export const initBMap = (BMap) => ({
     type: "INIT_BMAP",
-    BMap: Bmap
+    BMap
 })
 export const setCustomerLng = (lng) => ({
     type: "CUSTOMER_LNG",

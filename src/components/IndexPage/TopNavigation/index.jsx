@@ -10,8 +10,7 @@ class TopNavigation extends React.Component {
     super(props)
     this.state = {
       address: '',
-      regAddress: [],
-      test: true
+      regAddress: []
     }
   }
 
@@ -20,40 +19,41 @@ class TopNavigation extends React.Component {
         address: e.target.value,
         regAddress: []
     })
-    let _this = this
-    var options = {
-      onSearchComplete: function(results){
+    const _this = this
+    const map = this.props.BMap
+    const options = {
+      onSearchComplete(results){
         // 判断状态是否正确
-        if (local.getStatus() == 0){
-          var s = [];
-          for (var i = 0; i < results.getCurrentNumPois(); i ++){
+        if (local.getStatus() === 0){
+          const s = [];
+          for (let i = 0; i < results.getCurrentNumPois(); i+=1){
             s.push(results.getPoi(i).title);
           }
           _this.setState({regAddress: [...s]})
         }
       }
     };
-    var local = new BMap.LocalSearch(this.props.BMap, options);
+    const local = new BMap.LocalSearch(map, options);
     local.search(e.target.value);
 }
 
   search = () => {
-      var map = this.props.BMap;       
+      const map = this.props.BMap
       map.clearOverlays(); 
-      let geocoder = new AMap.Geocoder();
+      const geocoder = new AMap.Geocoder();
       geocoder.getLocation(this.state.address, (status, result) => {
       if (status === 'complete' && result.geocodes.length) {
-          console.log("地址: "+result.geocodes[0].formattedAddress)
+          console.log(`地址: ${result.geocodes[0].formattedAddress}`)
           const lnglat = result.geocodes[0].location;
           this.props.setDestination(result.geocodes[0].formattedAddress)
-          const lat = lnglat.lat; // 纬度
-          const lng = lnglat.lng;// 经度
+          const {lat} = lnglat; // 纬度
+          const {lng} = lnglat;// 经度
           console.log(`经度为:${lng}, 纬度为:${lat}`);
-          var pointCustomer = new BMap.Point(this.props.lng, this.props.lat);
-          var customerMarker = new BMap.Marker(pointCustomer);
+          const pointCustomer = new BMap.Point(this.props.lng, this.props.lat);
+          const customerMarker = new BMap.Marker(pointCustomer);
           map.addOverlay(customerMarker);
-          var addressPoint = new BMap.Point(lng, lat);
-          var addressMarker = new BMap.Marker(addressPoint);
+          const addressPoint = new BMap.Point(lng, lat);
+          const addressMarker = new BMap.Marker(addressPoint);
           map.centerAndZoom(new BMap.Point(lng, lat), 16);
           map.addOverlay(addressMarker);
 
@@ -64,26 +64,26 @@ class TopNavigation extends React.Component {
   }
 
   selectAddress = (e) => {
-    var map = this.props.BMap;       
+    const map = this.props.BMap 
     map.clearOverlays(); 
-    let geocoder = new AMap.Geocoder();
+    const geocoder = new AMap.Geocoder();
     this.setState({
       address: e.target.textContent
     })
     document.getElementsByClassName("address-input")[0].value = e.target.textContent
     geocoder.getLocation(e.target.textContent, (status, result) => {
     if (status === 'complete' && result.geocodes.length) {
-        console.log("地址: "+result.geocodes[0].formattedAddress)
+        console.log(`地址: ${result.geocodes[0].formattedAddress}`)
         const lnglat = result.geocodes[0].location;
         this.props.setDestination(result.geocodes[0].formattedAddress)
-        const lat = lnglat.lat; // 纬度
-        const lng = lnglat.lng;// 经度
+        const {lat} = lnglat; // 纬度
+        const {lng} = lnglat;// 经度
         console.log(`经度为:${lng}, 纬度为:${lat}`);
-        var pointCustomer = new BMap.Point(this.props.lng, this.props.lat);
-        var customerMarker = new BMap.Marker(pointCustomer);
+        const pointCustomer = new BMap.Point(this.props.lng, this.props.lat);
+        const customerMarker = new BMap.Marker(pointCustomer);
         map.addOverlay(customerMarker);
-        var addressPoint = new BMap.Point(lng, lat);
-        var addressMarker = new BMap.Marker(addressPoint);
+        const addressPoint = new BMap.Point(lng, lat);
+        const addressMarker = new BMap.Marker(addressPoint);
         map.centerAndZoom(new BMap.Point(lng, lat), 16);
         map.addOverlay(addressMarker);
       } 
@@ -100,27 +100,36 @@ class TopNavigation extends React.Component {
   }
 
   render() {
-    return <div className="top-navigation-wrapper">
-                <div className="about-team">
-                <Link to="/">关于我们</Link>
-                </div>
-                <div className="booking-enter" >
-                    <span><Link to="/bookingOrderList">订单查询</Link></span>
-                </div>
-                <div className="address-input-wrapper">
-                    <span  onClick={this.search} className="icon-search search-btn"></span>
-                    <input type="text" 
-                            className="address-input" 
-                            value={this.state.address} 
-                            onChange={this.onChange} 
-                            onKeyPress={this.handleEnterKey}
-                            placeholder="请输入目的地"/>
-                    <div className="reg-address-list">
-                      {this.state.regAddress.map((item, index) => <div className="r-result" key={index}><span className="icon-position"></span><span onClick={this.selectAddress} className="reg-address">{item}</span></div>)}
-                    </div>
+    return (
+      <div className="top-navigation-wrapper">
+        <div className="about-team">
+          <Link to="/">关于我们</Link>
+        </div>
+        <div className="booking-enter">
+          <span><Link to="/bookingOrderList">订单查询</Link></span>
+        </div>
+        <div className="address-input-wrapper">
+          <span onClick={this.search} className="icon-search search-btn" />
+          <input
+            type="text" 
+            className="address-input" 
+            value={this.state.address} 
+            onChange={this.onChange} 
+            onKeyPress={this.handleEnterKey}
+            placeholder="请输入目的地"
+          />
+          <div className="reg-address-list">
+            {this.state.regAddress.map((item, index) => (
+              <div className="r-result" key={index}>
+                <span className="icon-position" />
+                <span onClick={this.selectAddress} className="reg-address">{item}</span>
+              </div>
+))}
+          </div>
                     
-                </div>
-            </div>
+        </div>
+      </div>
+)
   }
 
 }

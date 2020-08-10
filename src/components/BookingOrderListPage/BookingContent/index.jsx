@@ -11,11 +11,13 @@ class BookingContent extends React.Component {
     }
 
     render() {
-        return <div className="booking-content-wrapper">
-                <div className="top-search"><span>输入手机号查询</span></div>
-                <div className="booking-content"></div>
-                <div className="show-logo"></div>
-            </div>
+        return (
+          <div className="booking-content-wrapper">
+            <div className="top-search"><span>输入手机号查询</span></div>
+            <div className="booking-content" />
+            <div className="show-logo" />
+          </div>
+)
     }
 }
 

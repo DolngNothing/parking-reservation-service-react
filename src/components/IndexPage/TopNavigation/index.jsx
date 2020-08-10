@@ -2,6 +2,7 @@ import React from 'react'
 import BMap from 'BMap'
 import AMap from 'AMap'
 import './index.scss'
+import { Link } from "react-router-dom";
 
 class TopNavigation extends React.Component {
 
@@ -9,7 +10,8 @@ class TopNavigation extends React.Component {
     super(props)
     this.state = {
       address: '',
-      regAddress: []
+      regAddress: [],
+      test: true
     }
   }
 
@@ -61,7 +63,35 @@ class TopNavigation extends React.Component {
       });
   }
 
-
+  selectAddress = (e) => {
+    var map = this.props.BMap;       
+    map.clearOverlays(); 
+    let geocoder = new AMap.Geocoder();
+    this.setState({
+      address: e.target.textContent
+    })
+    document.getElementsByClassName("address-input")[0].value = e.target.textContent
+    geocoder.getLocation(e.target.textContent, (status, result) => {
+    if (status === 'complete' && result.geocodes.length) {
+        console.log("地址: "+result.geocodes[0].formattedAddress)
+        const lnglat = result.geocodes[0].location;
+        this.props.setDestination(result.geocodes[0].formattedAddress)
+        const lat = lnglat.lat; // 纬度
+        const lng = lnglat.lng;// 经度
+        console.log(`经度为:${lng}, 纬度为:${lat}`);
+        var pointCustomer = new BMap.Point(this.props.lng, this.props.lat);
+        var customerMarker = new BMap.Marker(pointCustomer);
+        map.addOverlay(customerMarker);
+        var addressPoint = new BMap.Point(lng, lat);
+        var addressMarker = new BMap.Marker(addressPoint);
+        map.centerAndZoom(new BMap.Point(lng, lat), 16);
+        map.addOverlay(addressMarker);
+      } 
+        this.setState({
+          regAddress: [],
+        })
+      });
+  }
 
   handleEnterKey = (e) => {
       if(e.nativeEvent.keyCode === 13){
@@ -72,10 +102,10 @@ class TopNavigation extends React.Component {
   render() {
     return <div className="top-navigation-wrapper">
                 <div className="about-team">
-                    <span>关于我们</span>
+                <Link to="/">关于我们</Link>
                 </div>
-                <div className="booking-enter">
-                    <span>订单查询</span>
+                <div className="booking-enter" >
+                    <span><Link to="/bookingOrderList">订单查询</Link></span>
                 </div>
                 <div className="address-input-wrapper">
                     <span  onClick={this.search} className="icon-search search-btn"></span>
@@ -86,7 +116,7 @@ class TopNavigation extends React.Component {
                             onKeyPress={this.handleEnterKey}
                             placeholder="请输入目的地"/>
                     <div className="reg-address-list">
-                      {this.state.regAddress.map(item => <div className="r-result"><span>{item}</span></div>)}
+                      {this.state.regAddress.map((item, index) => <div className="r-result" key={index}><span className="icon-position"></span><span onClick={this.selectAddress} className="reg-address">{item}</span></div>)}
                     </div>
                     
                 </div>

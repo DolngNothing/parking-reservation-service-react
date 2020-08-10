@@ -1,4 +1,5 @@
 import React from 'react'
+import BookingIdList from '../../components/BookingOrderListPage/BookingIdList'
 
 class BookingOrderList extends React.Component {
     constructor(props) {
@@ -7,7 +8,7 @@ class BookingOrderList extends React.Component {
 
     render() {
         return <div className="booking-list-page">
-
+            <BookingIdList />
         </div>
     }
 }

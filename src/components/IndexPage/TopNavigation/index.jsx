@@ -2,6 +2,7 @@ import React from 'react'
 import BMap from 'BMap'
 import AMap from 'AMap'
 import './index.scss'
+import { Link } from "react-router-dom";
 
 class TopNavigation extends React.Component {
 
@@ -9,7 +10,8 @@ class TopNavigation extends React.Component {
     super(props)
     this.state = {
       address: '',
-      regAddress: []
+      regAddress: [],
+      test: true
     }
   }
 
@@ -100,10 +102,10 @@ class TopNavigation extends React.Component {
   render() {
     return <div className="top-navigation-wrapper">
                 <div className="about-team">
-                    <span>关于我们</span>
+                <Link to="/">关于我们</Link>
                 </div>
-                <div className="booking-enter">
-                    <span>订单查询</span>
+                <div className="booking-enter" >
+                    <span><Link to="/bookingOrderList">订单查询</Link></span>
                 </div>
                 <div className="address-input-wrapper">
                     <span  onClick={this.search} className="icon-search search-btn"></span>
@@ -114,7 +116,7 @@ class TopNavigation extends React.Component {
                             onKeyPress={this.handleEnterKey}
                             placeholder="请输入目的地"/>
                     <div className="reg-address-list">
-                      {this.state.regAddress.map((item, index) => <div className="r-result" key={index}><span onClick={this.selectAddress} className="reg-address">{item}</span></div>)}
+                      {this.state.regAddress.map((item, index) => <div className="r-result" key={index}><span className="icon-position"></span><span onClick={this.selectAddress} className="reg-address">{item}</span></div>)}
                     </div>
                     
                 </div>

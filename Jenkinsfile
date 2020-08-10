@@ -7,13 +7,15 @@ pipeline {
     stage('build') {
       steps {
         echo 'build'
-        bat 'npm install -gd express --registry=http://registry.npm.taobao.org'
+        bat 'npm install --registry=https://registry.npm.taobao.org'
+        bat 'npm run build'
       }
     }
     stage('deploy') {
       steps {
         echo 'deploy'
-        bat "run.bat"
+        bat 'xcopy build D:\\nginx-1.18.0\\html\\  /S  /E /Y'
+        bat 'D:\\nginx-1.19.1\\nginx.exe -s reload'
       }
     }
   }

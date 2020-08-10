@@ -8,6 +8,7 @@ pipeline {
       steps {
         echo 'build'
         bat 'npm install --registry=https://registry.npm.taobao.org'
+        bat 'npm install BMap'
         bat 'npm run build'
       }
     }

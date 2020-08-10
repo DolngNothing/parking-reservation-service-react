@@ -9,6 +9,7 @@ class TopNavigation extends React.Component {
     super(props)
     this.state = {
       address: '',
+      regAddress: []
     }
   }
 
@@ -16,21 +17,25 @@ class TopNavigation extends React.Component {
     this.setState({
         address: e.target.value
     })
+    var options = {
+      onSearchComplete: function(results){
+        // 判断状态是否正确
+        if (local.getStatus() == 0){
+          var s = [];
+          for (var i = 0; i < results.getCurrentNumPois(); i ++){
+            s.push(results.getPoi(i).title + ", " + results.getPoi(i).address);
+          }
+          document.getElementById("r-result").innerHTML = s.join("<br/>");
+        }
+      }
+    };
+    var local = new BMap.LocalSearch(this.props.BMap, options);
+    local.search(e.target.value);
 }
 
   search = () => {
       var map = this.props.BMap;       
       map.clearOverlays(); 
-      /*
-      map.centerAndZoom(new BMap.Point(this.props.lat, this.props.lng), 16);
-      var local = new BMap.LocalSearch(map, {
-          renderOptions: {map: map}
-      }); */
-      /* map.enableScrollWheelZoom(true); 
-      local.search(this.state.address);
-      var point = new BMap.Point(this.props.lng, this.props.lat);
-      var marker = new BMap.Marker(point);
-      map.addOverlay(marker); */
       let geocoder = new AMap.Geocoder();
       geocoder.getLocation(this.state.address, (status, result) => {
       if (status === 'complete' && result.geocodes.length) {
@@ -78,6 +83,7 @@ class TopNavigation extends React.Component {
                             onChange={this.onChange} 
                             onKeyPress={this.handleEnterKey}
                             placeholder="请输入目的地"/>
+                    {this.state.regAddress.map(item => <div className="r-result"><span>{item}</span></div>)}
                 </div>
             </div>
   }

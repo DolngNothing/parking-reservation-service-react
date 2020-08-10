@@ -1,9 +1,8 @@
 import React from 'react'
 import Map from '../../components/Map/index'
 import './index.scss'
-import SearchShow from '../../components/SearchShow'
-import TopNavigation from '../../components/TopNavigation'
-import { setDestination } from '../../actions'
+import SearchShow from '../../components/IndexPage/SearchShow'
+import TopNavigation from '../../components/IndexPage/TopNavigation'
 
 class Index extends React.Component {
 

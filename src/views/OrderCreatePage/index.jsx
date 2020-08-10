@@ -1,6 +1,6 @@
 import React from 'react'
 import ParkingLotInfo from '../../components/OrderCreatePage/ParkingLotInfo'
-
+import BookInfoForm from '../../components/OrderCreatePage/BookInfoForm'
 
 class OrderCreatePage extends React.Component{
 
@@ -8,6 +8,7 @@ class OrderCreatePage extends React.Component{
         return (
             <div>
                 <ParkingLotInfo />
+                <BookInfoForm />
             </div>
         );
     }

@@ -15,6 +15,7 @@ module.exports = {
         "react/jsx-indent":0,
         "react/destructuring-assignment": 1,
         "jsx-a11y/no-static-element-interactions": 0,
-        "react/prefer-stateless-function": 0
+        "react/prefer-stateless-function": 0,
+        "react/jsx-props-no-spreading": 1
     }
   };

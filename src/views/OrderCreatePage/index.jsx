@@ -1,7 +1,7 @@
 import React from 'react'
+import { Row, Col } from 'antd';
 import ParkingLotInfo from '../../components/OrderCreatePage/ParkingLotInfo'
 import BookInfoForm from '../../components/OrderCreatePage/BookInfoForm'
-import { Row, Col } from 'antd';
 import './index.css'
 
 class OrderCreatePage extends React.Component {

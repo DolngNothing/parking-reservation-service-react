@@ -66,7 +66,7 @@ class BookInfoForm extends React.Component {
   saveBookForm = () => {
     const {liscen,phone,mail,startTime,endTime} =this.state;
     
-    if(liscen!=''&&phone!=''&&mail!=''&&startTime!=''&&endTime!=''){
+    if(liscen!==''&&phone!==''&&mail!==''&&startTime!==''&&endTime!==''){
       console.log('可以传输啦！');
     }else{
       alert("请输入时间")
@@ -92,8 +92,9 @@ class BookInfoForm extends React.Component {
     const { mailValiType } = this.state;
     return (
       <div>
-        <Form {...formItemLayout}
-        layout={'horizontal'}
+        <Form
+          {...formItemLayout}
+          layout="horizontal"
         >
           <Form.Item
             help="请填写正确的车牌号"

@@ -28,11 +28,11 @@ class ParkingLotInfo extends React.Component {
 		return (
 			<div>
 				<Card
-					className="parkingInfo"
-					title={name}
-					hoverable
-					style={{ width: 550 }}
-					cover={<img alt="example" src={lotPic} />}
+  className="parkingInfo"
+  title={name}
+  hoverable
+  style={{ width: 550 }}
+  cover={<img alt="example" src={lotPic} />}
 				>
 					<p>
 						具体地址:

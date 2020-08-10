@@ -13,6 +13,7 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+    box-shadow: 2px 2px 10px #666;
     &::-webkit-scrollbar {
         display: none;
     }

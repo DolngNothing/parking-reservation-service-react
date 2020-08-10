@@ -1,6 +1,6 @@
 import React from 'react'
 import './index.scss'
-import '../../css/icon.css'
+import '../../../css/icon.css'
 
 class SearchShow extends React.Component {
 

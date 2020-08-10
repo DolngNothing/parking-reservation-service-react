@@ -66,10 +66,10 @@ class TopNavigation extends React.Component {
       } else {
           alert("查无此地")
       }
-      this.setState({
-        regAddress: [],
-      })
     });
+    this.setState({
+      regAddress: [],
+    })
   }
 
   selectAddress = (point, title) => {
@@ -82,6 +82,9 @@ class TopNavigation extends React.Component {
     const destinationMarker = new BMap.Marker(point);
     map.centerAndZoom(new BMap.Point(point.lng, point.lat), 16);
     map.addOverlay(destinationMarker);
+    const pointCustomer = new BMap.Point(this.props.lng, this.props.lat);
+    const customerMarker = new BMap.Marker(pointCustomer);
+    map.addOverlay(customerMarker);
     this.props.setDestination(title)
     this.setState({
       regAddress: [],

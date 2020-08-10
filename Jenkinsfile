@@ -8,7 +8,6 @@ pipeline {
       steps {
         echo 'build'
         bat 'npm install --registry=https://registry.npm.taobao.org'
-        bat 'npm install BMap'
         bat 'npm run build'
       }
     }
@@ -16,7 +15,6 @@ pipeline {
       steps {
         echo 'deploy'
         bat 'xcopy build D:\\nginx-1.18.0\\html\\  /S  /E /Y'
-        bat 'D:\\nginx-1.19.1\\nginx.exe -s reload'
       }
     }
   }

@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.css';
+import { HashRouter, Route } from 'react-router-dom';
 import IndexContainer from './containers/IndexContainer';
 import OrderDetail from './views/OrderDetail'
 import BookingOrderList from './views/bookingOrderList'
-import { HashRouter, Route } from 'react-router-dom';
 import 'antd/dist/antd.css';
 import OrderCreatePageContainer from './containers/OrderCreatePageContainer'
 

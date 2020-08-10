@@ -1,20 +1,20 @@
-export const initBMap = (BMap) => ({
+export const initBMap = (Bmap) => ({
     type: "INIT_BMAP",
-    BMap: BMap
+    BMap: Bmap
 })
 export const setCustomerLng = (lng) => ({
     type: "CUSTOMER_LNG",
-    lng: lng
+    lng
 })
 export const setCustomerLat = (lat) => ({
     type: "CUSTOMER_LAT",
-    lat: lat
+    lat
 })
 export const setCustomerAddress = (customerAddress) => ({
     type: "CUSTOMER_ADDRESS",
-    customerAddress: customerAddress
+    customerAddress
 })
 export const setDestination = (destination) => ({
     type: "DESTINATION",
-    destination: destination
+    destination
 })

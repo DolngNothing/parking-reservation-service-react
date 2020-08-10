@@ -15,7 +15,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint --ext .js src",
+    "lint:fix": "eslint --fix --ext .js src"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -35,11 +37,21 @@
   "devDependencies": {
     "antd": "^4.5.3",
     "axios": "^0.19.2",
+    "eslint": "^6.6.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-react": "^7.20.5",
+    "husky": "^4.2.5",
     "mockjs": "^1.1.0",
     "node-sass": "^4.14.1",
     "react-redux": "^7.2.1",
     "react-router-dom": "^5.2.0",
     "redux": "^4.0.5",
     "sass-loader": "^9.0.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
   }
 }

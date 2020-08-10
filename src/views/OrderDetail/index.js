@@ -1,5 +1,6 @@
 import React from 'react'
-import { Descriptions, Radio, Button } from 'antd'
+import { Descriptions, Button, Alert } from 'antd'
+import './index.scss'
 
 class OrderDetail extends React.Component {
     state = {
@@ -15,9 +16,9 @@ class OrderDetail extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="container">
                 <Descriptions
-                    bordered="1"
+                    bordered
                     title="订单详情"
                     size="default"
                 >
@@ -30,6 +31,18 @@ class OrderDetail extends React.Component {
                     <Descriptions.Item label="费用">12￥</Descriptions.Item>
                     <Descriptions.Item label="订单状态">等待确认/预约成功</Descriptions.Item>
                 </Descriptions>
+
+                <div className="btn-div">
+                    <Button type="primary">确认订单</Button>
+                    <Button type="">取消预约</Button>
+                </div>
+
+                <Alert
+                    message="Success Tips"
+                    description="Detailed description and advice about successful copywriting."
+                    type="success"
+                    showIcon
+                />
             </div>
         );
     }

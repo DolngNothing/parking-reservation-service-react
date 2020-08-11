@@ -1,4 +1,6 @@
 import React from 'react'
+
+import moment from 'moment'
 import { Form, Input, Button, DatePicker } from 'antd';
 import { CarOutlined, PhoneOutlined, MailOutlined } from '@ant-design/icons';
 
@@ -79,6 +81,19 @@ class BookInfoForm extends React.Component {
 
   }
 
+  range(start, end) {
+    let result = [];
+    for (let i = start; i < end; i++) {
+      result.push(i);
+    }
+    return result;
+  }
+
+  disabledDate(time) {
+    return time < Date.now() - 8.64e7;
+  }
+
+
   render() {
     const formItemLayout ={
       labelCol: { span: 4 },
@@ -136,7 +151,11 @@ class BookInfoForm extends React.Component {
             hasFeedback
             required
           >
-            <RangePicker showTime onChange={this.setDate}  />
+            <RangePicker 
+            showTime 
+            onChange={this.setDate} 
+            disabledDate={this.disabledDate} 
+            format="YYYY年MM月DD日 小时:HH" />
           </Form.Item>
           <Form.Item {...buttonItemLayout}>
             <Button type="primary" htmlType="submit" onClick={this.saveBookForm}>

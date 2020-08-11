@@ -10,11 +10,9 @@ class OrderCreatePage extends React.Component {
     return (
       <div>
         <Row>
-          <Col span={8}><ParkingLotInfo /></Col>
+          <Col offset span={8}><ParkingLotInfo /></Col>
           <Col span={16}><BookInfoForm /></Col>
         </Row>
-        
-        
       </div>
     );
   }

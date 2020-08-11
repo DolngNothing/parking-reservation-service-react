@@ -93,9 +93,9 @@ class OrderDetail extends React.Component {
 		return (
 			<div className="container">
 				<Descriptions
-					bordered
-					title="订单详情"
-					size="default"
+					  bordered
+					  title="订单详情"
+					  size="default"
 				>
 					<Descriptions.Item label="停车场">{parkingLotName}</Descriptions.Item>
 					<Descriptions.Item label="位置">{postion}</Descriptions.Item>
@@ -110,7 +110,8 @@ class OrderDetail extends React.Component {
 					<Descriptions.Item label="手机">{phone}</Descriptions.Item>
 					<Descriptions.Item label="邮箱">{mail}</Descriptions.Item>
 					<Descriptions.Item label="费用">
-						{cost}￥
+						{cost}
+￥
 					</Descriptions.Item>
 					<Descriptions.Item label="订单状态">
 						<span className={status ? "completed" : "uncompleted"}>
@@ -123,7 +124,7 @@ class OrderDetail extends React.Component {
 					<div onClick={this.comfirmOrder} style={{ display: isComfirmBtnShow }} className="btn-div-item">
 						<Button type="primary">
 							确认订单
-        				</Button>
+      </Button>
 					</div>
 					<div style={{ display: isCancelBtnShow }} className="btn-div-item">
 						<Button onClick={this.cancelOrder}>取消预约</Button>

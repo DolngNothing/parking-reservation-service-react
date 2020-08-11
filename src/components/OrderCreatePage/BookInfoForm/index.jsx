@@ -1,6 +1,4 @@
 import React from 'react'
-
-import moment from 'moment'
 import { Form, Input, Button, DatePicker } from 'antd';
 import { CarOutlined, PhoneOutlined, MailOutlined } from '@ant-design/icons';
 import './index.css'
@@ -82,15 +80,15 @@ class BookInfoForm extends React.Component {
 
   }
 
-  range(start, end) {
-    let result = [];
-    for (let i = start; i < end; i++) {
+  range = (start, end) => {
+    const result = [];
+    for (let i = start; i < end; i+=1) {
       result.push(i);
     }
     return result;
   }
 
-  disabledDate(time) {
+  disabledDate=(time)=> {
     return time < Date.now() - 8.64e7;
   }
 
@@ -153,7 +151,8 @@ class BookInfoForm extends React.Component {
             showTime 
             onChange={this.setDate} 
             disabledDate={this.disabledDate} 
-            format="YYYY年MM月DD日 小时:HH" />
+            format="YYYY年MM月DD日 小时:HH"
+            />
           </Form.Item>
           <Form.Item>
             <Button type="primary" htmlType="submit" onClick={this.saveBookForm}>

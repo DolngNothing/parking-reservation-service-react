@@ -1,2 +1,4 @@
 src/serviceWorker.js
 App.text.jsx
+src/views/Index
+src/components/IndexPage/TopNavigation

@@ -23,3 +23,10 @@ export function getParkingLots() {
         url: baseUrl
     })
 }
+
+export function getParkingLots(lng, lat, destinationName) {
+    return axios({
+        method: 'get',
+        url: `${baseUrl}/parkingLots?lng=${lng}&lat=${lat}&destinationName=${destinationName}`
+    })
+}

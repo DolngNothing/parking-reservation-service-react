@@ -25,6 +25,17 @@ export default (state = {}, action) => {
             stateCopy4.destination = action.destination
             return stateCopy4
         }
+        case 'SET_PARKINGLOTS': {
+            const stateCopy5 = {...state}
+            /* console.log(action.parkingLots) */
+            stateCopy5.parkingLots = action.parkingLots
+            return stateCopy5
+        }
+        case 'EMPTY_PARKINGLOTS': {
+            const stateCopy6 = {...state}
+            stateCopy6.parkingLots = []
+            return stateCopy6
+        }
         default: {
             return state
         }

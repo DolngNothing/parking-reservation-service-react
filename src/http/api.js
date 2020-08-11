@@ -12,6 +12,14 @@ export function getOrders() {
 export function saveOrder(order) {
     return axios({
         method: 'post',
-        data: order
+        data: order,
+        url:baseUrl
+    })
+}
+
+export function getParkingLots() {
+    return axios({
+        method: 'get',
+        url: baseUrl
     })
 }

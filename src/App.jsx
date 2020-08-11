@@ -5,6 +5,7 @@ import IndexContainer from './containers/IndexContainer';
 import BookingOrderList from './views/bookingOrderList'
 import 'antd/dist/antd.css';
 import OrderCreatePageContainer from './containers/OrderCreatePageContainer'
+import OrderDetailPage from './views/OrderDetail'
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <HashRouter>
         <Route path="/" exact component={IndexContainer} />
         <Route path="/bookingOrderList" component={BookingOrderList} />
+        <Route path="/orderDetail" component={OrderDetailPage} />
         <Route path="/OrderCreatePageContainer" component={OrderCreatePageContainer} />
       </HashRouter>
     </div>

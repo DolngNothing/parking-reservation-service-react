@@ -1,6 +1,7 @@
 import React from 'react'
 import './index.scss'
 import '../../../css/icon.css'
+import PropTypes from 'prop-types';
 
 class SearchShow extends React.Component {
 
@@ -33,6 +34,11 @@ class SearchShow extends React.Component {
 )
     }
 
+}
+
+SearchShow.propTypes = {
+  customerAddress: PropTypes.string.isRequired,
+  destination: PropTypes.string.isRequired
 }
 
 export default SearchShow

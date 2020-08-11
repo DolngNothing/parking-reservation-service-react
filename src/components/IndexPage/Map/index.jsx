@@ -1,6 +1,7 @@
 import React from 'react'
 import './index.scss'
 import BMap from 'BMap'
+import PropTypes from 'prop-types';
 
 class Map extends React.Component {
 
@@ -46,10 +47,13 @@ class Map extends React.Component {
           <div className="map-wrapper">
             <div id="allmap" />
           </div>
-)
-         
+        )    
     }
 
 }
+Map.propTypes = {
+    initBMap: PropTypes.func.isRequired
+    
+  }
 
 export default Map

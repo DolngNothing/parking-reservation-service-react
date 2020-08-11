@@ -1,6 +1,7 @@
 import React from 'react'
 import './index.scss'
 import '../../../css/icon.css'
+import PropTypes from 'prop-types';
 
 class SearchShow extends React.Component {
 
@@ -27,12 +28,17 @@ class SearchShow extends React.Component {
               </div>
             </div>
             <div className="show-wrapper">
-              <div id="se-result" />
+              {/* {this.props.parkingLots.map(item => <div>item.</div>)} */}
             </div>
           </div>
 )
     }
 
+}
+
+SearchShow.propTypes = {
+  customerAddress: PropTypes.string.isRequired,
+  destination: PropTypes.string.isRequired
 }
 
 export default SearchShow

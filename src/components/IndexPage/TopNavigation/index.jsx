@@ -3,6 +3,7 @@ import BMap from 'BMap'
 import AMap from 'AMap'
 import './index.scss'
 import { Link } from "react-router-dom";
+import { getParkingLots } from '../../../http/api'
 
 class TopNavigation extends React.Component {
 
@@ -78,7 +79,12 @@ class TopNavigation extends React.Component {
     this.setState({
       address: title
     })
+    const _this = this
     /* this.getLngAndLat(e.target.textContent, map) */
+    getParkingLots(point.lng, point.lat, title).then((response) => {
+      console.log(response)
+      _this.props.setParkingLots(response.data)
+    })
     const destinationMarker = new BMap.Marker(point);
     map.centerAndZoom(new BMap.Point(point.lng, point.lat), 16);
     map.addOverlay(destinationMarker);
@@ -124,8 +130,10 @@ class TopNavigation extends React.Component {
                 <span onClick={() => this.selectAddress(item.point, item.title)} className="reg-address">{item.title}</span>
               </div>
 ))}
-          </div>
-                    
+          </div>   
+        </div>
+        <div className="user-login">
+          <span class="icon-user"></span>
         </div>
       </div>
 )

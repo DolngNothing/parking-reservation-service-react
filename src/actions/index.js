@@ -18,3 +18,10 @@ export const setDestination = (destination) => ({
     type: "DESTINATION",
     destination
 })
+export const setParkingLots = (parkingLots) => ({
+    type: "SET_PARKINGLOTS",
+    parkingLots
+})
+export const emptyParkingLots = () => ({
+    type: "EMPTY_PARKINGLOTS"
+})

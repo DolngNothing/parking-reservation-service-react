@@ -10,7 +10,6 @@ module.exports = {
         "jsx-a11y/click-events-have-key-events": 0,
         "no-underscore-dangle": 0,
         "import/no-unresolved": 0,
-        "react/prop-types": 0,
         "no-use-before-define": 1,
         "react/jsx-indent":0,
         "react/destructuring-assignment": 1,

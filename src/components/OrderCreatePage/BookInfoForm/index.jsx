@@ -1,7 +1,9 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 import { Form, Input, Button, DatePicker ,notification } from 'antd';
 import { CarOutlined, PhoneOutlined, MailOutlined } from '@ant-design/icons';
 import {saveOrder} from '../../../http/api'
+
 import './index.css'
 
 const { RangePicker } = DatePicker;
@@ -71,10 +73,13 @@ class BookInfoForm extends React.Component {
     if(liscen!==''&&phone!==''&&mail!==''&&startTime!==''&&endTime!==''){
       const order ={'carNumber':liscen,'phone':phone,
         'email':mail,'parkingStartTime':startTime,'parkingEndTime':endTime
-//        ,'parkingLotId':this.props.parkingLotId
+        ,'parkingLotId':this.props.parkingLot.id
       }
-      saveOrder(order).then(()=>{
-
+      saveOrder(order).then((response)=>{
+        this.props.setBookOrder(response.data)
+        // 还有个跳转
+      }).catch((error)=>{
+        console.log(error);
       })
     }else{
       notification.error({
@@ -172,6 +177,11 @@ class BookInfoForm extends React.Component {
       </div>
     );
   }
+}
+
+BookInfoForm.propTypes = {
+  parkingLot:PropTypes.any.isRequired,
+  setBookOrder:PropTypes.func.isRequired
 }
 
 export default BookInfoForm;

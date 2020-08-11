@@ -1,4 +1,5 @@
 
+
 export default (state = {}, action) => {
     const stateCopy = {...state}
     switch( action.type ) {

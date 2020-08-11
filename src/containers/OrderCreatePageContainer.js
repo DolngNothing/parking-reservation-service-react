@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import OrderCreatePage from '../views/OrderCreatePage'
-import {setBookOrder} from '../actions'
+import { setBookOrder } from '../actions/index'
 
 const mapStateToProps = state => {
     return {

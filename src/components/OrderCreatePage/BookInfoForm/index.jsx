@@ -2,8 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types';
 import { Form, Input, Button, DatePicker, notification } from 'antd';
 import { CarOutlined, PhoneOutlined, MailOutlined } from '@ant-design/icons';
-import { saveOrder } from '../../../http/api'
 import locale from 'antd/es/locale/zh_CN';
+import { saveOrder } from '../../../http/api'
 
 import './index.css'
 
@@ -62,9 +62,9 @@ class BookInfoForm extends React.Component {
     if (e != null) {
       const startTime = new Date(e[0]._d).getTime(); // 本地时间距 1970 年 1 月 1 日午夜（GMT 时间）之间的毫秒数
       const endTime = new Date(e[1]._d).getTime();
-      console.log(startTime+" "+endTime);
-      this.setState({ startTime: startTime })
-      this.setState({ endTime: endTime })
+      console.log(`${startTime} ${endTime}`);
+      this.setState({ startTime })
+      this.setState({ endTime })
     } else {
       this.setState({ startTime: '' })
       this.setState({ endTime: '' })
@@ -75,7 +75,7 @@ class BookInfoForm extends React.Component {
     const { liscen, phone, mail, startTime, endTime } = this.state;
     if (liscen !== '' && phone !== '' && mail !== '' && startTime !== '' && endTime !== '') {
       const order = {
-        carNumber: liscen, phone: phone,
+        carNumber: liscen, phone,
         email: mail, parkingStartTime: startTime, parkingEndTime: endTime
         , parkingLotId: this.props.parkingLot.id
       }

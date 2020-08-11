@@ -2,6 +2,13 @@ import axios from 'axios'
 
 const baseUrl = 'http://10.222.29.209:8090'
 
+export function getOrder(orderID) {
+    return axios({
+        method: 'get',
+        url: `${baseUrl}/parkingOrders/${orderID}`
+    })
+}
+
 export function getOrders() {
     return axios({
         method: 'get',

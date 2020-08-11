@@ -16,6 +16,8 @@ module.exports = {
         "jsx-a11y/no-static-element-interactions": 0,
         "react/prefer-stateless-function": 0,
         "react/jsx-props-no-spreading": 1,
-        "react/jsx-indent-props": 0
+        "react/jsx-indent-props": 0,
+        "react/forbid-prop-types":1,
+        "react/prop-types":1
     }
   };

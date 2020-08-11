@@ -24,6 +24,7 @@ export default (state = {}, action) => {
             return stateCopy
         }
         case 'SET_PARKINGLOTS': {
+            /* console.log(action.parkingLots) */
             stateCopy.parkingLots = action.parkingLots
             return stateCopy
         }
@@ -33,6 +34,10 @@ export default (state = {}, action) => {
         }
         case 'SET_PARKINGLOT': {
             stateCopy.parkingLot = action.parkingLot
+            return stateCopy
+        }
+        case 'SAVE_BOOKORDER': {
+            stateCopy.bookOrder = action.bookOrder
             return stateCopy
         }
         default: {

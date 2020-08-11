@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 import { Card, Divider } from 'antd';
 import './index.css'
 
@@ -23,7 +24,7 @@ class ParkingLotInfo extends React.Component {
 	}
 
 	render() {
-		const { name, position, empty } = this.state.parkingLot
+		const { name, position, empty } = this.props.parkingLot
 		const {lotPic} = this.state
 		return (
 			<div>
@@ -52,5 +53,9 @@ class ParkingLotInfo extends React.Component {
 
 
 }
+
+ParkingLotInfo.propTypes = {
+	parkingLot:PropTypes.object.isRequired,
+  }
 
 export default ParkingLotInfo;

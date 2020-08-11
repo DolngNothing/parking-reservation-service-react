@@ -14,10 +14,12 @@ class Index extends React.Component {
               lng={this.props.lng}
               lat={this.props.lat}
               setDestination={this.props.setDestination}
+              setParkingLots={this.props.setParkingLots}
             />
             <SearchShow
               customerAddress={this.props.customerAddress}
               destination={this.props.destination}
+              parkingLots={this.props.parkingLots}
             />
             <Map
               initBMap={this.props.initBMap} 

@@ -28,7 +28,7 @@ class SearchShow extends React.Component {
               </div>
             </div>
             <div className="show-wrapper">
-              <div id="se-result" />
+              {/* {this.props.parkingLots.map(item => <div>item.</div>)} */}
             </div>
           </div>
 )

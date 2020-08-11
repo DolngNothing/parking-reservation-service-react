@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import Index from '../views/Index'
-import { initBMap, setCustomerLat, setCustomerLng, setCustomerAddress, setDestination } from '../actions/index'
+import { initBMap, setCustomerLat, setCustomerLng, setCustomerAddress, setDestination, setParkingLots, emptyParkingLots } from '../actions/index'
 
 const mapStateToProps = state => {
     return {
@@ -8,7 +8,8 @@ const mapStateToProps = state => {
       lat: state.lat,
       lng: state.lng,
       customerAddress: state.customerAddress,
-      destination: state.destination
+      destination: state.destination,
+      parkingLots: state.parkingLots
     }
   }
 
@@ -28,6 +29,12 @@ const mapStateToProps = state => {
       },
       setDestination: (destination) => {
         dispatch(setDestination(destination))
+      },
+      setParkingLots: (parkingLots) => {
+        dispatch(setParkingLots(parkingLots))
+      },
+      emptyParkingLots: () => {
+        dispatch(emptyParkingLots())
       }
     }
   }

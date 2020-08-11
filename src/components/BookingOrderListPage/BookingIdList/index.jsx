@@ -11,10 +11,12 @@ class BookingIdList extends React.Component {
     }
 
     render() {
-        const { idList } = this.state
         return (
           <div className="booking-id-list">
-            <div className="title-text"><span className="icon-booking"></span>历史订单</div>
+            <div className="title-text">
+<span className="icon-booking" />
+历史订单
+            </div>
             {/* {idList.map((item, index) => (
               <div className="id-text" key={index}>
                 <span className="icon-booking" />

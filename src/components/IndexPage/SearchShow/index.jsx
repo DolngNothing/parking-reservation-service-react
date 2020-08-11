@@ -25,6 +25,7 @@ class SearchShow extends React.Component {
       if(parkingLots === undefined) {
         parkingLots = []
       }
+      console.log(parkingLots)
         return (
           <div className="search-show-wrapper">
             <div className="address-wrapper">
@@ -41,8 +42,12 @@ class SearchShow extends React.Component {
                 {parkingLots.map((item, index) => <div key={index} 
                                                       onClick={() => this.jumpToOrderCreatePage(item)}
                                                       className="parking-lot">
-                                                        {item.name}
-                                                        </div>
+                                                        <div className="icon-position-wrapper"><span className="icon-position"></span></div>
+                                                        <div className="lot-msg-wrapper">
+                                                          <span className="lot-name">{item.name}</span>
+                                                          <span className="lot-address">{item.name}</span></div>
+                                                        <div className="img-wrapper"></div>
+                                                  </div>
                 )}
             </div>
           </div>

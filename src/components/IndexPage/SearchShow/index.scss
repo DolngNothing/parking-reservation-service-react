@@ -65,10 +65,30 @@
         width: 100%;
         .parking-lot {
             width: 100%;
-            height: 120px;
+            height: 70px;
             background-color: white;
-            @include center();
+            display: flex;
             cursor: pointer;
+            .icon-position-wrapper {
+                .icon-position {
+                    color: red;
+                    font-size: 26px;
+                }
+            }
+            .lot-msg-wrapper {
+                display: flex;
+                flex-direction: column;
+                .lot-name {
+                    color: #0066ff;
+                    font-size: 12px;
+                }
+                .lot-address {
+
+                }
+            }
+            .img-wrapper {
+
+            }
         }
     }
 }

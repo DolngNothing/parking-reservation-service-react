@@ -14,7 +14,12 @@ class BookingContent extends React.Component {
     render() {
         return (
           <div className="booking-content-wrapper">
-            <div className="top-search"><span>输入手机号查询</span></div>
+            <div className="top-search">
+              <div className="user-id-input-wrapper">
+                <span className="icon-search"></span>
+                <input type="text" placeholder="输入用户ID查询" className="user-id-input"/>
+              </div>
+            </div>
             <div className="booking-content-center">
               <div className="booking-content">
                 <OrderDetail />

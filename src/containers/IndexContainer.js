@@ -10,7 +10,8 @@ const mapStateToProps = state => {
       customerAddress: state.customerAddress,
       destination: state.destination,
       parkingLots: state.parkingLots,
-      parkingLot: state.parkingLot
+      parkingLot: state.parkingLot,
+      
     }
   }
 

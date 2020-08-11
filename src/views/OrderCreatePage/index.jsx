@@ -1,5 +1,4 @@
 import React from 'react'
-import { Row, Col } from 'antd';
 import ParkingLotInfo from '../../components/OrderCreatePage/ParkingLotInfo'
 import BookInfoForm from '../../components/OrderCreatePage/BookInfoForm'
 import './index.css'

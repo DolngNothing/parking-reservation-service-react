@@ -91,7 +91,7 @@ class OrderDetail extends React.Component {
 		const { parkingLotName, postion, carNumber, startTime, endTime, phone, mail, cost, status } = this.state.order
 		const { isComfirmBtnShow, isCancelBtnShow } = this.state
 		return (
-			<div className="container">
+			<div className="booking-content">
 				<Descriptions
 					  bordered
 					  title="订单详情"

@@ -6,15 +6,16 @@
     right: 0;
     width: 85%;
     height: 100%;
-    background-color: #697f91;
+    /* background-color: #697f91; */
+    background-color: white;
     display: flex;
     flex-direction: column;
     .top-search {
-        background-color: #697f91;
-        color: white;
+        background-color: #eee;
+        color: #0099ff;
         font-weight: bolder;
         font-size: 26px;
-        height: 11%;
+        height: 8%;
         display: flex;
         justify-content: flex-end;
         padding-right: 20px;
@@ -26,46 +27,6 @@
         height: 70%;
         background-color: white;
         @include center();
-        .booking-content {
-            width: 95%;
-            height: 80%;
-            background: #aaa;
-            position: relative;
-            @include center();
-            border-radius: 0px;
-            .content-title {
-                font-weight: bold;
-                font-size: 30px;
-                position: absolute;
-                top: 20px;
-                left: 50px;
-                color: white;
-            }
-            table {
-                border: solid #ccc; 
-                position: absolute;
-                top: 120px;
-                left: 50px;
-                border-width:1px 0px 0px 1px;
-                tbody {
-                    tr {
-                        th {
-                            background: #eee;
-                            width: 150px;
-                            height: 70px;
-                        }
-                        td {
-                            background: white;
-                            text-align: left;
-                            width: 300px;
-                            border: solid #ccc; 
-                            border-width: 0px 1px 1px 0px; 
-                            padding-left: 20px;
-                        }
-                    }
-                }
-            }
-        }
     }
     .show-logo {
         background-color: #ccc;

@@ -12,9 +12,18 @@ class SearchShow extends React.Component {
         }
     }
 
+    jumpToOrderCreatePage = (parkingLot) => {
+      this.props.history.push({pathname:"/orderCreate",
+      query: { parkingLot }})
+    }
+
     render() {
       const { customerAddress } = this.props
       const { destination } = this.props
+      let {parkingLots} = this.props
+      if(parkingLots === undefined) {
+        parkingLots = []
+      }
         return (
           <div className="search-show-wrapper">
             <div className="address-wrapper">
@@ -28,7 +37,7 @@ class SearchShow extends React.Component {
               </div>
             </div>
             <div className="show-wrapper">
-              {/* {this.props.parkingLots.map(item => <div>item.</div>)} */}
+                {parkingLots.map((item, index) => <div key={index} onClick={() => this.jumpToOrderCreatePage(item)}>{item.name}</div>)}
             </div>
           </div>
 )
@@ -38,7 +47,9 @@ class SearchShow extends React.Component {
 
 SearchShow.propTypes = {
   customerAddress: PropTypes.string.isRequired,
-  destination: PropTypes.string.isRequired
+  destination: PropTypes.string.isRequired,
+  history: PropTypes.func.isRequired,
+  parkingLots: PropTypes.array.isRequired
 }
 
 export default SearchShow

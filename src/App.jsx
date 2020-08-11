@@ -12,7 +12,7 @@ function App() {
       <HashRouter>
         <Route path="/" exact component={IndexContainer} />
         <Route path="/bookingOrderList" component={BookingOrderList} />
-        <Route path="/OrderCreatePageContainer" component={OrderCreatePageContainer} />
+        <Route path="/orderCreate" component={OrderCreatePageContainer} />
       </HashRouter>
     </div>
   );

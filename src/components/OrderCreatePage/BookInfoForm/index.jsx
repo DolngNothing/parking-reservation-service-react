@@ -71,11 +71,13 @@ class BookInfoForm extends React.Component {
     const {liscen,phone,mail,startTime,endTime} =this.state;
     
     if(liscen!==''&&phone!==''&&mail!==''&&startTime!==''&&endTime!==''){
+      console.log("id:"+this.props.parkingLot);
       const order ={'carNumber':liscen,'phone':phone,
         'email':mail,'parkingStartTime':startTime,'parkingEndTime':endTime
         ,'parkingLotId':this.props.parkingLot.id
       }
       saveOrder(order).then((response)=>{
+        console.log(response.data)
         this.props.setBookOrder(response.data)
         // 还有个跳转
       }).catch((error)=>{

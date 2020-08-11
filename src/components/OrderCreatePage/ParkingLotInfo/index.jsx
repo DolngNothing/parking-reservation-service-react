@@ -24,7 +24,7 @@ class ParkingLotInfo extends React.Component {
 	}
 
 	render() {
-		const { name, position, empty } = this.props.parkingLot
+		const { name, position, empty } = this.state.parkingLot
 		const {lotPic} = this.state
 		return (
 			<div>

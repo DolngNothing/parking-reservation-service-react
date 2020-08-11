@@ -33,7 +33,7 @@ export default (state = {}, action) => {
         }
         case 'SET_PARKINGLOT': {
             stateCopy.parkingLot = action.parkingLot
-            return stateCopy
+            return [...stateCopy]
         }
         case 'SAVE_BOOKORDER': {
             stateCopy.bookOrder = action.bookOrder

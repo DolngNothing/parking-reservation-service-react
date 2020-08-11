@@ -23,11 +23,8 @@ class OrderDetail extends React.Component {
 	}
 
 
-
-
-
 	componentDidMount() {
-		const { status } = this.state
+		const { status } = this.state.order
 		if (status === false) {
 			this.setState({
 				isComfirmBtnShow: 'inline-block'
@@ -55,6 +52,7 @@ class OrderDetail extends React.Component {
 		this.setState({
 			isComfirmBtnShow: 'none'
 		})
+		console.log(this.state.isComfirmBtnShow);
 		this.setState((prev) => ({
 			order: { ...prev.order, status: true }
 		}))
@@ -90,7 +88,8 @@ class OrderDetail extends React.Component {
 	}
 
 	render() {
-		const { parkingLotName, postion, carNumber, startTime, endTime, phone, mail, cost, status,isComfirmBtnShow,isCancelBtnShow } = this.state
+		const { parkingLotName, postion, carNumber, startTime, endTime, phone, mail, cost, status } = this.state.order
+		const {isComfirmBtnShow,isCancelBtnShow} = this.state
 		return (
   <div className="container">
     <Descriptions
@@ -122,7 +121,7 @@ class OrderDetail extends React.Component {
     </Descriptions>
 
     <div className="btn-div">
-      <div role="button" onClick={this.comfirmOrder} style={{ display: isComfirmBtnShow }} className="btn-div-item">
+      <div onClick={this.comfirmOrder} style={{ display: isComfirmBtnShow }} className="btn-div-item">
         <Button type="primary">
           确认订单
         </Button>

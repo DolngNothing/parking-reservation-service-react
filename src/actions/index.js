@@ -31,6 +31,7 @@ export const setParkingLot = (parkingLot) => ({
     parkingLot
 })
 
-export const setBookOrder = () => ({
-    type: "SAVE_BOOKORDER"
+export const setBookOrder = (order) => ({
+    type: "SAVE_BOOKORDER",
+    order
 })

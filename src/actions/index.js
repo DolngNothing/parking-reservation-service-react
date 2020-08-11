@@ -25,3 +25,7 @@ export const setParkingLots = (parkingLots) => ({
 export const emptyParkingLots = () => ({
     type: "EMPTY_PARKINGLOTS"
 })
+export const setParkingLot = (parkingLot) => ({
+    type: "SET_PARKINGLOT",
+    parkingLot
+})

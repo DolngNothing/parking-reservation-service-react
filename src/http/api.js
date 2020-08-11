@@ -23,3 +23,4 @@ export function getParkingLots(lng, lat, destinationName) {
         url: `${baseUrl}/parkingLots?lng=${lng}&lat=${lat}&destinationName=${destinationName}`
     })
 }
+

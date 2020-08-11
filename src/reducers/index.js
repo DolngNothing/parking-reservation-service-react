@@ -1,3 +1,5 @@
+
+
 export default (state = {}, action) => {
     const stateCopy = {...state}
     switch( action.type ) {
@@ -27,6 +29,10 @@ export default (state = {}, action) => {
         }
         case 'EMPTY_PARKINGLOTS': {
             stateCopy.parkingLots = []
+            return stateCopy
+        }
+        case 'SET_PARKINGLOT': {
+            stateCopy.parkingLot = action.parkingLot
             return stateCopy
         }
         default: {

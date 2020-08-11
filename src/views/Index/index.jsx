@@ -26,6 +26,7 @@ class Index extends React.Component {
               destination={this.props.destination}
               parkingLots={this.props.parkingLots}
               history={this.props.history}
+              setParkingLot={this.props.setParkingLot}
             />
             <Map
               initBMap={this.props.initBMap} 

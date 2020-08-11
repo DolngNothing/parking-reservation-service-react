@@ -13,6 +13,7 @@ class SearchShow extends React.Component {
     }
 
     jumpToOrderCreatePage = (parkingLot) => {
+      this.props.setParkingLot(parkingLot)
       this.props.history.push({pathname:"/orderCreate",
       query: { parkingLot }})
     }
@@ -20,7 +21,7 @@ class SearchShow extends React.Component {
     render() {
       const { customerAddress } = this.props
       const { destination } = this.props
-      let {parkingLots} = this.props
+      let { parkingLots } = this.props
       if(parkingLots === undefined) {
         parkingLots = []
       }
@@ -37,7 +38,12 @@ class SearchShow extends React.Component {
               </div>
             </div>
             <div className="show-wrapper">
-                {parkingLots.map((item, index) => <div key={index} onClick={() => this.jumpToOrderCreatePage(item)}>{item.name}</div>)}
+                {parkingLots.map((item, index) => <div key={index} 
+                                                      onClick={() => this.jumpToOrderCreatePage(item)}
+                                                      className="parking-lot">
+                                                        {item.name}
+                                                        </div>
+                )}
             </div>
           </div>
 )

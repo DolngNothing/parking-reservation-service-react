@@ -17,13 +17,6 @@ export function saveOrder(order) {
     })
 }
 
-export function getParkingLots() {
-    return axios({
-        method: 'get',
-        url: baseUrl
-    })
-}
-
 export function getParkingLots(lng, lat, destinationName) {
     return axios({
         method: 'get',

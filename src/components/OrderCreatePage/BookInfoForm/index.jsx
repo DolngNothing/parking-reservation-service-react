@@ -1,6 +1,7 @@
 import React from 'react'
 import { Form, Input, Button, DatePicker } from 'antd';
 import { CarOutlined, PhoneOutlined, MailOutlined } from '@ant-design/icons';
+import {saveOrder} from '../../../http/api'
 import './index.css'
 
 const { RangePicker } = DatePicker;
@@ -69,9 +70,18 @@ class BookInfoForm extends React.Component {
     
     if(liscen!==''&&phone!==''&&mail!==''&&startTime!==''&&endTime!==''){
       console.log('可以传输啦！');
+      const order ={'carNumber':liscen,'phone':phone,
+        'email':mail,'parkingStartTime':startTime,'parkingEndTime':endTime
+//        ,'parkingLotId':this.props.parkingLotId
+      }
+      saveOrder(order).then(()=>{
+
+      })
     }else{
       alert("请输入时间")
     }
+
+
 
 
   //   this.axios.post(URL,{'liscen':liscen,'phone':phone,

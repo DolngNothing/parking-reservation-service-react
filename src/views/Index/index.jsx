@@ -6,6 +6,11 @@ import TopNavigation from '../../components/IndexPage/TopNavigation'
 
 class Index extends React.Component {
 
+    constructor(props) {
+      super(props)
+      this.props.setParkingLots([])
+    }
+
     render() {
         return (
           <div className="index-page">
@@ -20,6 +25,8 @@ class Index extends React.Component {
               customerAddress={this.props.customerAddress}
               destination={this.props.destination}
               parkingLots={this.props.parkingLots}
+              history={this.props.history}
+              setParkingLot={this.props.setParkingLot}
             />
             <Map
               initBMap={this.props.initBMap} 

@@ -1,7 +1,10 @@
 import React from 'react'
-import { Form, Input, Button, DatePicker ,notification } from 'antd';
+import PropTypes from 'prop-types';
+import { Form, Input, Button, DatePicker, notification } from 'antd';
 import { CarOutlined, PhoneOutlined, MailOutlined } from '@ant-design/icons';
-import {saveOrder} from '../../../http/api'
+import locale from 'antd/es/locale/zh_CN';
+import { saveOrder } from '../../../http/api'
+
 import './index.css'
 
 const { RangePicker } = DatePicker;
@@ -56,47 +59,55 @@ class BookInfoForm extends React.Component {
   }
 
   setDate = (e) => {
-    if(e!=null){
-    this.setState({ startTime: e[0]._d })
-    this.setState({ endTime: e[1]._d })
-    }else{
+    if (e != null) {
+      const startTime = new Date(e[0]._d).getTime(); // 本地时间距 1970 年 1 月 1 日午夜（GMT 时间）之间的毫秒数
+      const endTime = new Date(e[1]._d).getTime();
+      console.log(`${startTime} ${endTime}`);
+      this.setState({ startTime })
+      this.setState({ endTime })
+    } else {
       this.setState({ startTime: '' })
       this.setState({ endTime: '' })
     }
   }
 
   saveBookForm = () => {
-    const {liscen,phone,mail,startTime,endTime} =this.state;
-    
-    if(liscen!==''&&phone!==''&&mail!==''&&startTime!==''&&endTime!==''){
-      const order ={'carNumber':liscen,'phone':phone,
-        'email':mail,'parkingStartTime':startTime,'parkingEndTime':endTime
-//        ,'parkingLotId':this.props.parkingLotId
+    const { liscen, phone, mail, startTime, endTime } = this.state;
+    if (liscen !== '' && phone !== '' && mail !== '' && startTime !== '' && endTime !== '') {
+      const order = {
+        carNumber: liscen, phone,
+        email: mail, parkingStartTime: startTime, parkingEndTime: endTime
+        , parkingLotId: this.props.parkingLot.id
       }
-      saveOrder(order).then(()=>{
-
+      saveOrder(order).then((response) => {
+        console.log(response.data)
+        this.props.setBookOrder(response.data)
+        this.props.history.push('/orderDetail')
+        // 还有个跳转
+      }).catch((error) => {
+        console.log(error);
       })
-    }else{
+    } else {
       notification.error({
         message: '填写错误',
         description:
           '您的信息填写不完全',
       });
     }
-  //   this.axios.post(URL,{'liscen':liscen,'phone':phone,
-  //   'mail':mail,'startTime':startTime,'endTime':endTime
-  // })
+    //   this.axios.post(URL,{'liscen':liscen,'phone':phone,
+    //   'mail':mail,'startTime':startTime,'endTime':endTime
+    // })
   }
 
   range = (start, end) => {
     const result = [];
-    for (let i = start; i < end; i+=1) {
+    for (let i = start; i < end; i += 1) {
       result.push(i);
     }
     return result;
   }
 
-  disabledDate=(time)=> {
+  disabledDate = (time) => {
     return time < Date.now() - 8.64e7;
   }
 
@@ -155,12 +166,13 @@ class BookInfoForm extends React.Component {
             required
             size="large"
           >
-            <RangePicker 
-            className="form-width"
-            showTime 
-            onChange={this.setDate} 
-            disabledDate={this.disabledDate} 
-            format="YYYY年MM月DD日 小时:HH"
+            <RangePicker
+              className="form-width"
+              showTime
+              onChange={this.setDate}
+              disabledDate={this.disabledDate}
+              locale={locale}
+              format="YYYY年MM月DD日 小时:HH"
             />
           </Form.Item>
           <Form.Item>
@@ -172,6 +184,12 @@ class BookInfoForm extends React.Component {
       </div>
     );
   }
+}
+
+BookInfoForm.propTypes = {
+  parkingLot: PropTypes.any.isRequired,
+  setBookOrder: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired
 }
 
 export default BookInfoForm;

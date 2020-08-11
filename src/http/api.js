@@ -19,8 +19,8 @@ export function getOrders() {
 export function saveOrder(order) {
     return axios({
         method: 'post',
-        data: order,
-        url:baseUrl
+        url:`${baseUrl}/parkingOrders`,
+        data: order
     })
 }
 
@@ -30,3 +30,4 @@ export function getParkingLots(lng, lat, destinationName) {
         url: `${baseUrl}/parkingLots?lng=${lng}&lat=${lat}&destinationName=${destinationName}`
     })
 }
+

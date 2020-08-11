@@ -1,40 +1,44 @@
+
+
 export default (state = {}, action) => {
+    const stateCopy = {...state}
     switch( action.type ) {
         case 'INIT_BMAP': {
-            const stateCopy = {...state}
             stateCopy.BMap = action.BMap
             return stateCopy
         }
         case 'CUSTOMER_LNG': {
-            const stateCopy1 = {...state}
-            stateCopy1.lng = action.lng
-            return stateCopy1
+            stateCopy.lng = action.lng
+            return stateCopy
         }
         case 'CUSTOMER_LAT': {
-            const stateCopy2 = {...state}
-            stateCopy2.lat = action.lat
-            return stateCopy2
+            stateCopy.lat = action.lat
+            return stateCopy
         }
         case 'CUSTOMER_ADDRESS': {
-            const stateCopy3 = {...state}
-            stateCopy3.customerAddress = action.customerAddress
-            return stateCopy3
+            stateCopy.customerAddress = action.customerAddress
+            return stateCopy
         }
         case 'DESTINATION': {
-            const stateCopy4 = {...state}
-            stateCopy4.destination = action.destination
-            return stateCopy4
+            stateCopy.destination = action.destination
+            return stateCopy
         }
         case 'SET_PARKINGLOTS': {
-            const stateCopy5 = {...state}
             /* console.log(action.parkingLots) */
-            stateCopy5.parkingLots = action.parkingLots
-            return stateCopy5
+            stateCopy.parkingLots = action.parkingLots
+            return stateCopy
         }
         case 'EMPTY_PARKINGLOTS': {
-            const stateCopy6 = {...state}
-            stateCopy6.parkingLots = []
-            return stateCopy6
+            stateCopy.parkingLots = []
+            return stateCopy
+        }
+        case 'SET_PARKINGLOT': {
+            stateCopy.parkingLot = action.parkingLot
+            return stateCopy
+        }
+        case 'SAVE_BOOKORDER': {
+            stateCopy.bookOrder = action.bookOrder
+            return stateCopy
         }
         default: {
             return state

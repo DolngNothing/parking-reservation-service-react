@@ -12,9 +12,20 @@ class SearchShow extends React.Component {
         }
     }
 
+    jumpToOrderCreatePage = (parkingLot) => {
+      this.props.setParkingLot(parkingLot)
+      this.props.history.push({pathname:"/orderCreate",
+      query: { parkingLot }})
+    }
+
     render() {
       const { customerAddress } = this.props
       const { destination } = this.props
+      let { parkingLots } = this.props
+      if(parkingLots === undefined) {
+        parkingLots = []
+      }
+      console.log(parkingLots)
         return (
           <div className="search-show-wrapper">
             <div className="address-wrapper">
@@ -28,7 +39,16 @@ class SearchShow extends React.Component {
               </div>
             </div>
             <div className="show-wrapper">
-              {/* {this.props.parkingLots.map(item => <div>item.</div>)} */}
+                {parkingLots.map((item, index) => <div key={index} 
+                                                      onClick={() => this.jumpToOrderCreatePage(item)}
+                                                      className="parking-lot">
+                                                        <div className="icon-position-wrapper"><span className="icon-position"></span></div>
+                                                        <div className="lot-msg-wrapper">
+                                                          <span className="lot-name">{item.name}</span>
+                                                          <span className="lot-address">{item.name}</span></div>
+                                                        <div className="img-wrapper"></div>
+                                                  </div>
+                )}
             </div>
           </div>
 )
@@ -38,7 +58,9 @@ class SearchShow extends React.Component {
 
 SearchShow.propTypes = {
   customerAddress: PropTypes.string.isRequired,
-  destination: PropTypes.string.isRequired
+  destination: PropTypes.string.isRequired,
+  history: PropTypes.func.isRequired,
+  parkingLots: PropTypes.array.isRequired
 }
 
 export default SearchShow

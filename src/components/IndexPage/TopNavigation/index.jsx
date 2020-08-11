@@ -107,13 +107,14 @@ class TopNavigation extends React.Component {
           <span><Link to="/bookingOrderList">订单查询</Link></span>
         </div>
         <div className="address-input-wrapper">
-          <span onClick={this.search} className="icon-search search-btn" />
+          <span className="icon-search search-btn" />
+          {/* <span onClick={this.search} className="icon-search search-btn" /> */}
           <input
             type="text" 
             className="address-input" 
             value={this.state.address} 
             onChange={this.onChange} 
-            onKeyPress={this.handleEnterKey}
+            /* onKeyPress={this.handleEnterKey} */
             placeholder="请输入目的地"
           />
           <div className="reg-address-list">

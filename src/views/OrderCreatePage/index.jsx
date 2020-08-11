@@ -20,6 +20,7 @@ class OrderCreatePage extends React.Component {
             <BookInfoForm 
             parkingLot={this.props.parkingLot}
             setBookOrder={this.props.setBookOrder}
+            history={this.props.history}
             />
           </div>
         </div>
@@ -31,7 +32,8 @@ class OrderCreatePage extends React.Component {
 
 OrderCreatePage.propTypes = {
   parkingLot:PropTypes.object.isRequired,
-  setBookOrder:PropTypes.func.isRequired
+  setBookOrder:PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired
 }
 
 export default OrderCreatePage;

@@ -12,8 +12,8 @@ export function getOrders() {
 export function saveOrder(order) {
     return axios({
         method: 'post',
-        data: order,
-        url:`${baseUrl}/parkingOrders`
+        url:`${baseUrl}/parkingOrders`,
+        data: order
     })
 }
 

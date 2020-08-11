@@ -148,6 +148,7 @@ class BookInfoForm extends React.Component {
             size="large"
           >
             <RangePicker 
+            className="form-width"
             showTime 
             onChange={this.setDate} 
             disabledDate={this.disabledDate} 

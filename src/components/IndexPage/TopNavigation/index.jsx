@@ -27,7 +27,10 @@ class TopNavigation extends React.Component {
         if (local.getStatus() === 0){
           const s = [];
           for (let i = 0; i < results.getCurrentNumPois(); i+=1){
-            s.push(results.getPoi(i).title);
+            s.push({
+              title: results.getPoi(i).title, 
+              point: results.getPoi(i).point
+            });
           }
           _this.setState({regAddress: [...s]})
         }
@@ -40,8 +43,12 @@ class TopNavigation extends React.Component {
   search = () => {
       const map = this.props.BMap
       map.clearOverlays(); 
-      const geocoder = new AMap.Geocoder();
-      geocoder.getLocation(this.state.address, (status, result) => {
+      this.getLngAndLat(this.state.address, map)
+  }
+
+  getLngAndLat = (address,map) => {
+    const geocoder = new AMap.Geocoder();
+    geocoder.getLocation(address, (status, result) => {
       if (status === 'complete' && result.geocodes.length) {
           console.log(`地址: ${result.geocodes[0].formattedAddress}`)
           const lnglat = result.geocodes[0].location;
@@ -56,41 +63,32 @@ class TopNavigation extends React.Component {
           const addressMarker = new BMap.Marker(addressPoint);
           map.centerAndZoom(new BMap.Point(lng, lat), 16);
           map.addOverlay(addressMarker);
-
       } else {
           alert("查无此地")
       }
-      });
+    });
+    this.setState({
+      regAddress: [],
+    })
   }
 
-  selectAddress = (e) => {
+  selectAddress = (point, title) => {
     const map = this.props.BMap 
     map.clearOverlays(); 
-    const geocoder = new AMap.Geocoder();
     this.setState({
-      address: e.target.textContent
+      address: title
     })
-    document.getElementsByClassName("address-input")[0].value = e.target.textContent
-    geocoder.getLocation(e.target.textContent, (status, result) => {
-    if (status === 'complete' && result.geocodes.length) {
-        console.log(`地址: ${result.geocodes[0].formattedAddress}`)
-        const lnglat = result.geocodes[0].location;
-        this.props.setDestination(result.geocodes[0].formattedAddress)
-        const {lat} = lnglat; // 纬度
-        const {lng} = lnglat;// 经度
-        console.log(`经度为:${lng}, 纬度为:${lat}`);
-        const pointCustomer = new BMap.Point(this.props.lng, this.props.lat);
-        const customerMarker = new BMap.Marker(pointCustomer);
-        map.addOverlay(customerMarker);
-        const addressPoint = new BMap.Point(lng, lat);
-        const addressMarker = new BMap.Marker(addressPoint);
-        map.centerAndZoom(new BMap.Point(lng, lat), 16);
-        map.addOverlay(addressMarker);
-      } 
-        this.setState({
-          regAddress: [],
-        })
-      });
+    /* this.getLngAndLat(e.target.textContent, map) */
+    const destinationMarker = new BMap.Marker(point);
+    map.centerAndZoom(new BMap.Point(point.lng, point.lat), 16);
+    map.addOverlay(destinationMarker);
+    const pointCustomer = new BMap.Point(this.props.lng, this.props.lat);
+    const customerMarker = new BMap.Marker(pointCustomer);
+    map.addOverlay(customerMarker);
+    this.props.setDestination(title)
+    this.setState({
+      regAddress: [],
+    })
   }
 
   handleEnterKey = (e) => {
@@ -122,7 +120,7 @@ class TopNavigation extends React.Component {
             {this.state.regAddress.map((item, index) => (
               <div className="r-result" key={index}>
                 <span className="icon-position" />
-                <span onClick={this.selectAddress} className="reg-address">{item}</span>
+                <span onClick={() => this.selectAddress(item.point, item.title)} className="reg-address">{item.title}</span>
               </div>
 ))}
           </div>

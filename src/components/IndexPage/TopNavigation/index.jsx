@@ -82,7 +82,6 @@ class TopNavigation extends React.Component {
     const _this = this
     /* this.getLngAndLat(e.target.textContent, map) */
     getParkingLots(point.lng, point.lat, title).then((response) => {
-      console.log(response)
       _this.props.setParkingLots(response.data)
     })
     const destinationMarker = new BMap.Marker(point);
@@ -133,7 +132,7 @@ class TopNavigation extends React.Component {
           </div>   
         </div>
         <div className="user-login">
-          <span class="icon-user"></span>
+          <span className="icon-user"></span>
         </div>
       </div>
 )

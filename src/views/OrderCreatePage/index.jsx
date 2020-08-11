@@ -8,13 +8,9 @@ class OrderCreatePage extends React.Component {
 
   render() {
     return (
-      <div>
-        <Row>
-          <Col span={8}><ParkingLotInfo /></Col>
-          <Col span={16}><BookInfoForm /></Col>
-        </Row>
-        
-        
+      <div className="content">
+          <div className="item"><ParkingLotInfo /></div>
+          <div className="item"><BookInfoForm /></div>
       </div>
     );
   }

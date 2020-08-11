@@ -1,6 +1,7 @@
 import React from 'react'
 import { Form, Input, Button, DatePicker } from 'antd';
 import { CarOutlined, PhoneOutlined, MailOutlined } from '@ant-design/icons';
+import './index.css'
 
 const { RangePicker } = DatePicker;
 const licenseVailt = /^(([京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领][A-Z](([0-9]{5}[DF])|([DF]([A-HJ-NP-Z0-9])[0-9]{4})))|([京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领][A-Z][A-HJ-NP-Z0-9]{4}[A-HJ-NP-Z0-9挂学警港澳使领]))$/;
@@ -80,20 +81,12 @@ class BookInfoForm extends React.Component {
   }
 
   render() {
-    const formItemLayout ={
-      labelCol: { span: 4 },
-      wrapperCol: { span: 6 },
-    }
-    const buttonItemLayout ={
-      wrapperCol: { span: 6, offset: 0 },
-    }
     const { liscenValiType } = this.state;
     const { phoneValitType } = this.state;
     const { mailValiType } = this.state;
     return (
       <div>
         <Form
-          {...formItemLayout}
           layout="horizontal"
         >
           <Form.Item
@@ -106,6 +99,7 @@ class BookInfoForm extends React.Component {
               prefix={<CarOutlined />}
               onBlur={this.isLicenseNo}
               required
+              size="large"
             />
           </Form.Item>
           <Form.Item
@@ -118,6 +112,7 @@ class BookInfoForm extends React.Component {
               prefix={<PhoneOutlined />}
               onBlur={this.isPhoneNo}
               required
+              size="large"
             />
           </Form.Item>
           <Form.Item
@@ -130,16 +125,18 @@ class BookInfoForm extends React.Component {
               prefix={<MailOutlined />}
               onBlur={this.isEmailNo}
               required
+              size="large"
             />
           </Form.Item>
           <Form.Item
             rules={[{ required: true, message: 'Please input your password!' }]}
             hasFeedback
             required
+            size="large"
           >
             <RangePicker showTime onChange={this.setDate}  />
           </Form.Item>
-          <Form.Item {...buttonItemLayout}>
+          <Form.Item>
             <Button type="primary" htmlType="submit" onClick={this.saveBookForm}>
               Submit
             </Button>

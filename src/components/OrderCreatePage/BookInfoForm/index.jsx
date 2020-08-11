@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, Input, Button, DatePicker } from 'antd';
+import { Form, Input, Button, DatePicker ,notification } from 'antd';
 import { CarOutlined, PhoneOutlined, MailOutlined } from '@ant-design/icons';
 import {saveOrder} from '../../../http/api'
 import './index.css'
@@ -69,7 +69,6 @@ class BookInfoForm extends React.Component {
     const {liscen,phone,mail,startTime,endTime} =this.state;
     
     if(liscen!==''&&phone!==''&&mail!==''&&startTime!==''&&endTime!==''){
-      console.log('可以传输啦！');
       const order ={'carNumber':liscen,'phone':phone,
         'email':mail,'parkingStartTime':startTime,'parkingEndTime':endTime
 //        ,'parkingLotId':this.props.parkingLotId
@@ -78,16 +77,15 @@ class BookInfoForm extends React.Component {
 
       })
     }else{
-      alert("请输入时间")
+      notification.error({
+        message: '填写错误',
+        description:
+          '您的信息填写不完全',
+      });
     }
-
-
-
-
   //   this.axios.post(URL,{'liscen':liscen,'phone':phone,
   //   'mail':mail,'startTime':startTime,'endTime':endTime
   // })
-
   }
 
   range = (start, end) => {

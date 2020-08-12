@@ -3,6 +3,7 @@ import Map from '../../components/IndexPage/Map/index'
 import './index.scss'
 import SearchShow from '../../components/IndexPage/SearchShow'
 import TopNavigation from '../../components/IndexPage/TopNavigation'
+import { CollectionCreateForm } from '../../components/IndexPage/Login/loginForm'
 
 class Index extends React.Component {
 
@@ -20,6 +21,8 @@ class Index extends React.Component {
               lat={this.props.lat}
               setDestination={this.props.setDestination}
               setParkingLots={this.props.setParkingLots}
+              changeVisible={this.props.changeVisible}
+              userInfo={this.props.userInfo}
             />
             <SearchShow
               customerAddress={this.props.customerAddress}
@@ -27,6 +30,11 @@ class Index extends React.Component {
               parkingLots={this.props.parkingLots}
               history={this.props.history}
               setParkingLot={this.props.setParkingLot}
+            />
+            <CollectionCreateForm
+              saveLoginStatus={this.props.saveLoginStatus}
+              isModalVisible={this.props.isModalVisible}
+              changeVisible={this.props.changeVisible}
             />
             <Map
               initBMap={this.props.initBMap} 

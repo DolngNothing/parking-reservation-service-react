@@ -1,4 +1,7 @@
 import axios from 'axios'
+import { message } from 'antd';
+
+
 
 axios.defaults.withCredentials = true
 axios.defaults.cressDomain = true
@@ -35,6 +38,23 @@ export function getParkingLots(lng, lat, destinationName) {
         url: `${baseUrl}/parkingLots?lng=${lng}&lat=${lat}&destinationName=${destinationName}`
     })
 }
+
+export function userLogin(userInfo) {
+    return axios({
+        method: 'post',
+        data: userInfo,
+        url:`${baseUrl}/user/login`
+    })
+}
+
+axios.interceptors.response.use(response => {
+    console.log("return data")
+    if(response.status === 200)
+        return Promise.resolve(response)
+    return Promise.reject(response)
+},error => {
+    message.error(error.response.data.message);
+})
 
 export function comfirmOrder(orderID) {
     return axios({

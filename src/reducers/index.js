@@ -6,8 +6,13 @@ const defaultState = {
     bookOrder,
     parkingLot,
     userInformation,
-    emptyPosition
+    emptyPosition,
+    isModalVisible: false,
+    userInfo:null
 };
+
+
+
 
 export default (state = defaultState, action) => {
     const stateCopy = {...state}

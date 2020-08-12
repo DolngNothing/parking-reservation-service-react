@@ -35,10 +35,22 @@ export const setBookOrder = (order) => ({
     type: "SAVE_BOOKORDER",
     order
 })
+
+export const changeVisible = (isModalVisible) => ({
+    type: "CHANGE_VISIBLE",
+    isModalVisible
+})
+
+export const saveLoginStatus = (userInfo) => ({
+    type: "SAVE_LOGIN_STATUS",
+    userInfo
+})
+
 export const isLoginModelShow = (show) => ({
     type: "LOGIN_MODEL",
     show
 })
+
 export const setUserInformation = (userInformation) => ({
     type: "USER_INFORMATION",
     userInformation

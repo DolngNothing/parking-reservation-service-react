@@ -2,7 +2,7 @@ import React from 'react'
 import './index.scss'
 import '../../../css/icon.css'
 import axios from 'axios'
-import { getOrder, loginTest } from '../../../http/api'
+import { getOrder, loginTest, userLogin } from '../../../http/api'
 
 
 class BookingIdList extends React.Component {
@@ -25,6 +25,17 @@ class BookingIdList extends React.Component {
         })
       })
       
+    }
+
+    componentDidMount() {
+      userLogin({
+        phoneNumber: "13427560238",
+        password: "123"
+      }).then(() => {
+        getOrder(23).then((response) => {
+          console.log(response)
+        })
+      })
     }
 
     render() {

@@ -55,3 +55,7 @@ export const setUserInformation = (userInformation) => ({
     type: "USER_INFORMATION",
     userInformation
 })
+export const saveEmptyPosition = (emptyPosition) => ({
+    type: "SAVE_EMPTYPOSITION",
+    emptyPosition
+})

@@ -1,10 +1,12 @@
 const bookOrder = sessionStorage.getItem('bookOrder')?JSON.parse(sessionStorage.getItem('bookOrder')):{};
 const parkingLot = sessionStorage.getItem('parkingLot')?JSON.parse(sessionStorage.getItem('parkingLot')):{};
 const userInformation = sessionStorage.getItem('userInformation')?JSON.parse(sessionStorage.getItem('userInformation')):{};
+const emptyPosition = sessionStorage.getItem('emptyPosition')?JSON.parse(sessionStorage.getItem('emptyPosition')):{};
 const defaultState = {
     bookOrder,
     parkingLot,
     userInformation,
+    emptyPosition,
     isModalVisible: false,
     userInfo:null
 };
@@ -59,13 +61,9 @@ export default (state = defaultState, action) => {
             stateCopy.userInformation = action.userInformation
             return stateCopy
         }
-        case 'CHANGE_VISIBLE': {
-            stateCopy.isModalVisible = action.isModalVisible
-            return stateCopy
-        }
-        case 'SAVE_LOGIN_STATUS': {
-            stateCopy.userInfo = action.userInfo
-            console.log("stateCopy",stateCopy)
+        case 'SAVE_EMPTYPOSITION': {
+            sessionStorage.setItem('emptyPosition', JSON.stringify(action.emptyPosition));
+            stateCopy.emptyPosition = action.emptyPosition
             return stateCopy
         }
         default: {

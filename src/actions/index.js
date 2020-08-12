@@ -39,3 +39,7 @@ export const isLoginModelShow = (show) => ({
     type: "LOGIN_MODEL",
     show
 })
+export const setUserInformation = (userInformation) => ({
+    type: "USER_INFORMATION",
+    userInformation
+})

@@ -1,6 +1,7 @@
 import React from 'react'
 import './index.scss'
 import '../../../css/icon.css'
+import { userLogin, getOrder } from '../../../http/api'
 
 class BookingIdList extends React.Component {
     constructor(props) {
@@ -18,6 +19,17 @@ class BookingIdList extends React.Component {
                 "xxxxxxxxxxxxx",
             ]
         }
+    }
+
+    componentDidMount() {
+      userLogin({
+        phoneNumber: "13427560238",
+        password: "123"
+      }).then(() => {
+        getOrder(23).then((response) => {
+          console.log(response)
+        })
+      })
     }
 
     render() {

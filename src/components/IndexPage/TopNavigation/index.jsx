@@ -83,7 +83,7 @@ class TopNavigation extends React.Component {
     /* this.getLngAndLat(e.target.textContent, map) */
     getParkingLots(point.lng, point.lat, title).then((response) => {
       _this.props.setParkingLots(response.data)
-    })
+    }).catch(error =>{})
     const destinationMarker = new BMap.Marker(point);
     map.centerAndZoom(new BMap.Point(point.lng, point.lat), 16);
     map.addOverlay(destinationMarker);
@@ -99,6 +99,12 @@ class TopNavigation extends React.Component {
   handleEnterKey = (e) => {
       if(e.nativeEvent.keyCode === 13){
           this.search()
+    }
+  }
+
+  changeModalDisplay = () => {
+    if(this.props.userInfo === null){
+      this.props.changeVisible(true)
     }
   }
 
@@ -132,7 +138,7 @@ class TopNavigation extends React.Component {
           </div>   
         </div>
         <div className="user-login">
-          <span className="icon-user"></span>
+          <span className="icon-user" onClick={this.changeModalDisplay}></span>
         </div>
       </div>
 )

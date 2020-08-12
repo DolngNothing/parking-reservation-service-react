@@ -1,6 +1,8 @@
-
-
-export default (state = {}, action) => {
+const initState = {
+    isModalVisible: false,
+    userInfo:null
+}
+export default (state = initState, action) => {
     const stateCopy = {...state}
     switch( action.type ) {
         case 'INIT_BMAP': {
@@ -38,6 +40,15 @@ export default (state = {}, action) => {
         }
         case 'SAVE_BOOKORDER': {
             stateCopy.bookOrder = action.bookOrder
+            return stateCopy
+        }
+        case 'CHANGE_VISIBLE': {
+            stateCopy.isModalVisible = action.isModalVisible
+            return stateCopy
+        }
+        case 'SAVE_LOGIN_STATUS': {
+            stateCopy.userInfo = action.userInfo
+            console.log("stateCopy",stateCopy)
             return stateCopy
         }
         default: {

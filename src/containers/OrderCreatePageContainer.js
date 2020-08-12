@@ -1,10 +1,11 @@
 import { connect } from 'react-redux'
 import OrderCreatePage from '../views/OrderCreatePage'
-import { setBookOrder } from '../actions/index'
+import { setBookOrder ,saveEmptyPosition} from '../actions/index'
 
 const mapStateToProps = state => {
     return {
-      parkingLot: state.parkingLot
+      parkingLot: state.parkingLot,
+      emptyPosition: state.emptyPosition
     }
   }
 
@@ -12,6 +13,9 @@ const mapStateToProps = state => {
     return {
         setBookOrder: (bookOrder) => {
         dispatch(setBookOrder(bookOrder))
+      },
+      saveEmptyPosition : (emptyPosition) =>{
+        dispatch(saveEmptyPosition(emptyPosition))
       }
     }
   }

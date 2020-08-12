@@ -18,15 +18,15 @@ class ParkingLotInfo extends React.Component {
 			// 	'position': '广东省珠海市香洲区软件园路1号',
 			// 	'empty': 3
 			// },
-
+			emptyPosition: 0,
 			lotPic: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1597050740122&di=080c47c6adc4de32dcab471775ef2d7e&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Fb0831050509164a7f8dfbe133f936eae9ab6e6d45835b-7I6j2L_fw658'
 		}
 	}
 
 	render() {
-		const { name, description, capacity ,id} = this.props.parkingLot
-		console.log(`id:${id}`);
+		const { name, description } = this.props.parkingLot
 		const { lotPic } = this.state
+		const { emptyPosition } = this.props
 		return (
 			<div>
 				<Card
@@ -43,7 +43,7 @@ class ParkingLotInfo extends React.Component {
 					<Divider className="diver" />
 					<p>
 						剩余空位:
-            {capacity}
+            {emptyPosition}
 					</p>
 					<Divider className="diver" />
 					<p>Card content</p>
@@ -57,6 +57,7 @@ class ParkingLotInfo extends React.Component {
 
 ParkingLotInfo.propTypes = {
 	parkingLot: PropTypes.object.isRequired,
+	emptyPosition: PropTypes.number.isRequired
 }
 
 export default ParkingLotInfo;

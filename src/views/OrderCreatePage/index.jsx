@@ -14,6 +14,7 @@ class OrderCreatePage extends React.Component {
           <div className="item">
             <ParkingLotInfo 
             parkingLot={this.props.parkingLot}
+            emptyPosition={this.props.emptyPosition}
             />
           </div>
           <div className="item">
@@ -21,6 +22,7 @@ class OrderCreatePage extends React.Component {
             parkingLot={this.props.parkingLot}
             setBookOrder={this.props.setBookOrder}
             history={this.props.history}
+            saveEmptyPosition={this.props.saveEmptyPosition}
             />
           </div>
         </div>

@@ -66,6 +66,15 @@ export default (state = defaultState, action) => {
             stateCopy.emptyPosition = action.emptyPosition
             return stateCopy
         }
+        case 'CHANGE_VISIBLE': {
+            stateCopy.isModalVisible = action.isModalVisible
+            return stateCopy
+        }
+        case 'SAVE_LOGIN_STATUS': {
+            sessionStorage.setItem('userInfo', JSON.stringify(action.userInfo));
+            stateCopy.userInfo = action.userInfo
+            return stateCopy
+        }
         default: {
             return state
         }

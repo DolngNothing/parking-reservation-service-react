@@ -2,23 +2,12 @@ import React from 'react'
 import { Descriptions, Button, notification } from 'antd'
 import './index.scss'
 import PropTypes from 'prop-types';
-import { getOrder } from '../../../http/api'
+import { comfirmOrder, cancelOrder } from '../../../http/api'
 
 class OrderDetail extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			order: {
-				parkingLotName: "XXX停车场",
-				location: "香洲区XXX路XX",
-				carNumber: "粤C7777",
-				phone: "13631230000",
-				mail: "971499022@qq.com",
-				price: 11,
-				status: false,
-				parkingStartTime: "2020年8月9日 15:30",
-				parkingEndTime: "2020年8月9日 16:00"
-			},
 			isComfirmBtnShow: 'none',
 			isCancelBtnShow: 'inline-block'
 		}
@@ -26,46 +15,41 @@ class OrderDetail extends React.Component {
 
 
 	componentDidMount() {
-		const { parkingStartTime } = this.state.order
-		const { bookOrder } = this.props
-		console.log(bookOrder)
-
-		getOrder(235).then((response) => {
+		const { status, parkingStartTime } = this.props.bookOrder
+		if (status === "WAIT_FOR_SURE") {
 			this.setState({
-				order: response.data
+				isComfirmBtnShow: 'inline-block'
 			})
-			const { status } = this.state.order
-			if (status === "WAIT_FOR_SURE") {
-				this.setState({
-					isComfirmBtnShow: 'inline-block'
-				})
-			}
-			if (new Date() >= parkingStartTime.valueOf()) {
-				alert(parkingStartTime.valueOf())
-				this.setState({
-					isCancelBtnShow: 'none'
-				})
-			}
-		})
+		}
+		if (new Date() >= parkingStartTime.valueOf()) {
+			this.setState({
+				isCancelBtnShow: 'none'
+			})
+		}
+
 	}
 
 	comfirmOrder = () => {
-		notification.success({
-			message: 'Success',
-			description:
-				'预约成功！',
+		const { id } = this.props.bookOrder
+		const { bookOrder } = this.props
+		bookOrder.status = "ALREADY_SURE"
+		this.props.setBookOrder(bookOrder)
+		comfirmOrder(id).then((response) => {
+			if (response.data.status === 'ALREADY_SURE' && response.data.id === id) {
+				notification.success({
+					message: 'Success',
+					description:
+						'预约成功！',
+				})
+				this.setState({
+					isComfirmBtnShow: 'none'
+				})
+			}
 		})
-		this.setState({
-			isComfirmBtnShow: 'none'
-		})
-		console.log(this.state.isComfirmBtnShow);
-		this.setState((prev) => ({
-			order: { ...prev.order, status: "ALREADY_SURE" }
-		}))
 	}
 
 	cancelOrder = () => {
-		const { parkingStartTime } = this.state.order
+		const { parkingStartTime, id } = this.props.bookOrder
 		const date = new Date().getTime()
 		if (date >= parkingStartTime.valueOf()) {
 			notification.warning({
@@ -76,9 +60,19 @@ class OrderDetail extends React.Component {
 				isCancelBtnShow: 'none'
 			})
 		} else {
-			notification.success({
-				message: 'Success',
-				description: '取消成功！',
+			const { bookOrder } = this.props
+			bookOrder.status = "DELETED"
+			this.props.setBookOrder(bookOrder)
+			cancelOrder(id).then((response) => {
+				if (response.data.status === 'DELETED' && response.data.id === id) {
+					notification.success({
+						message: 'Success',
+						description: '取消成功！',
+					})
+					this.setState({
+						isCancelBtnShow: 'none'
+					})
+				}
 			})
 		}
 	}
@@ -102,7 +96,8 @@ class OrderDetail extends React.Component {
 	}
 
 	render() {
-		const { parkingLotName, location, carNumber, parkingStartTime, parkingEndTime, phone, mail, price, status } = this.state.order
+		// console.log(this.props)
+		const { parkingLotName, location, carNumber, parkingStartTime, parkingEndTime, phone, mail, price, status } = this.props.bookOrder
 		const { isComfirmBtnShow, isCancelBtnShow } = this.state
 		return (
 			<div className="booking-content">
@@ -151,7 +146,8 @@ class OrderDetail extends React.Component {
 }
 
 OrderDetail.propTypes = {
-    bookOrder:PropTypes.object.isRequired
+	bookOrder: PropTypes.object.isRequired,
+	setBookOrder: PropTypes.func.isRequired
 }
 
 export default OrderDetail

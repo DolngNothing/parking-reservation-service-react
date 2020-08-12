@@ -37,7 +37,7 @@ export default (state = {}, action) => {
             return stateCopy
         }
         case 'SAVE_BOOKORDER': {
-            stateCopy.bookOrder = action.bookOrder
+            stateCopy.bookOrder = action.order
             return stateCopy
         }
         default: {

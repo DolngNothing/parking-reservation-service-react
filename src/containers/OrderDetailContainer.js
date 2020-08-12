@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
-import OrderDetail from '../components/common/OrderDetail/index'
+import OrderDetail from '../views/OrderDetail'
+import { setBookOrder } from '../actions/index'
 
 const mapStateToProps = (state) => {
    return {
@@ -7,5 +8,13 @@ const mapStateToProps = (state) => {
    }
 }
 
-const TodoListContainer = connect(mapStateToProps, null)(OrderDetail);
-export default TodoListContainer
+const mapDispatchToProps = dispatch => {
+   return {
+       setBookOrder: (bookOrder) => {
+       dispatch(setBookOrder(bookOrder))
+     }
+   }
+ }
+
+const OrderContainer = connect(mapStateToProps, mapDispatchToProps)(OrderDetail);
+export default OrderContainer

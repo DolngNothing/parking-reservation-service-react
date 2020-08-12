@@ -31,3 +31,22 @@ export function getParkingLots(lng, lat, destinationName) {
     })
 }
 
+export function comfirmOrder(orderID) {
+    return axios({
+        method:'patch',
+        url:`${baseUrl}/parkingOrders/${orderID}?type=1`,
+        data:{
+            status:"ALREADY_SURE"
+        }
+    })
+}
+
+export function cancelOrder(orderID) {
+    return axios({
+        method:'patch',
+        url:`${baseUrl}/parkingOrders/${orderID}`,
+        data:{
+            status:"DELETED"
+        }
+    })
+}

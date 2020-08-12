@@ -1,7 +1,6 @@
 import React from 'react'
 import './index.scss'
 import '../../../css/icon.css'
-import OrderDetail from '../../common/OrderDetail'
 
 class BookingContent extends React.Component {
     constructor(props) {
@@ -22,10 +21,10 @@ class BookingContent extends React.Component {
             </div>
             <div className="booking-content-center">
               <div className="booking-content">
-                <OrderDetail
-bookOrder={this.props.bookOrder}
-                            setBookOrder={this.props.setBookOrder}
-                />
+                {/* <OrderDetail
+                  bookOrder={this.props.bookOrder}
+                  setBookOrder={this.props.setBookOrder}
+                /> */}
               </div>
             </div>
             <div className="show-logo" />

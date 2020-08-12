@@ -1,13 +1,30 @@
 import React from 'react'
 import './index.scss'
 import '../../../css/icon.css'
+import axios from 'axios'
+import { getOrder, loginTest } from '../../../http/api'
+
 
 class BookingIdList extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            
+            orderList: []
         }
+    }
+    
+    componentWillMount() {
+      loginTest({
+        "phoneNumber": "13149306738",
+        "password": 456
+      }).then((response) =>{
+        console.log("response", response)
+        axios.defaults.withCredentials=true;
+        getOrder(23).then((res) => {
+          console.log(res)
+        })
+      })
+      
     }
 
     render() {

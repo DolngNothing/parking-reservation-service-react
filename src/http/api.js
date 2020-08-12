@@ -1,11 +1,16 @@
 import axios from 'axios'
 
+axios.defaults.withCredentials = true
+axios.defaults.cressDomain = true
+axios.defaults.baseUrl = "http://10.222.29.209:8090"
+
 const baseUrl = 'http://10.222.29.209:8090'
 
 export function getOrder(orderID) {
     return axios({
         method: 'get',
-        url: `${baseUrl}/parkingOrders/${orderID}`
+        url: `${baseUrl}/parkingOrders?userId=${orderID}`,
+        withCredentials: true
     })
 }
 
@@ -48,5 +53,14 @@ export function cancelOrder(orderID) {
         data:{
             status:"DELETED"
         }
+    })
+}
+
+export function loginTest(userInfo) {
+    return axios({
+        method: 'post',
+        url: `${baseUrl}/user/login`,
+        data: userInfo,
+        withCredentials: true
     })
 }

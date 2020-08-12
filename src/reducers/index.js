@@ -1,8 +1,10 @@
 const bookOrder = sessionStorage.getItem('bookOrder')?JSON.parse(sessionStorage.getItem('bookOrder')):{};
 const parkingLot = sessionStorage.getItem('parkingLot')?JSON.parse(sessionStorage.getItem('parkingLot')):{};
+const userInformation = sessionStorage.getItem('userInformation')?JSON.parse(sessionStorage.getItem('userInformation')):{};
 const defaultState = {
     bookOrder,
-    parkingLot
+    parkingLot,
+    userInformation
 };
 
 export default (state = defaultState, action) => {
@@ -45,6 +47,11 @@ export default (state = defaultState, action) => {
         case 'SAVE_BOOKORDER': {
             sessionStorage.setItem('bookOrder', JSON.stringify(action.order));
             stateCopy.bookOrder = action.order
+            return stateCopy
+        }
+        case 'USER_INFORMATION': {
+            sessionStorage.setItem('userInformation', JSON.stringify(action.userInformation));
+            stateCopy.userInformation = action.userInformation
             return stateCopy
         }
         default: {

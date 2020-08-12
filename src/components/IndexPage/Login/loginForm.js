@@ -79,6 +79,7 @@ export const CollectionCreateForm = (props) => {
             help="请填写正确的手机号"
             label="PhoneNumber"
             name="phone"
+            rules={[{ required: true }]}
             validateStatus={valitype[flag]}
             hasFeedback
         >

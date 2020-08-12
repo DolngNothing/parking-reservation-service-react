@@ -5,7 +5,10 @@ class OrderDetailPage extends React.Component {
     render() {
         return (
             <div className="order-detail-page">
-                <OrderDetail />
+                <OrderDetail
+bookOrder={this.props.bookOrder}
+                            setBookOrder={this.props.setBookOrder}
+                />
             </div>
         )
     }

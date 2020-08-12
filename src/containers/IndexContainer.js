@@ -1,6 +1,8 @@
 import { connect } from 'react-redux'
 import Index from '../views/Index'
-import { initBMap, setCustomerLat, setCustomerLng, setCustomerAddress, setDestination, setParkingLots, emptyParkingLots, setParkingLot, changeVisible, saveLoginStatus } from '../actions/index'
+import { initBMap, setCustomerLat, setCustomerLng, setCustomerAddress, setDestination, setParkingLots, emptyParkingLots, setParkingLot, changeVisible, saveLoginStatus, setUserInformation } from '../actions/index'
+
+
 
 const mapStateToProps = state => {
     return {
@@ -47,6 +49,9 @@ const mapStateToProps = state => {
       },
       saveLoginStatus: (userInfo) => {
         dispatch(saveLoginStatus(userInfo))
+      },
+      setUserInformation: (userInformation) => {
+        dispatch(setUserInformation(userInformation))
       }
     }
   }

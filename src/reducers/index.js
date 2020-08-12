@@ -1,8 +1,18 @@
-const initState = {
+const bookOrder = sessionStorage.getItem('bookOrder')?JSON.parse(sessionStorage.getItem('bookOrder')):{};
+const parkingLot = sessionStorage.getItem('parkingLot')?JSON.parse(sessionStorage.getItem('parkingLot')):{};
+const userInformation = sessionStorage.getItem('userInformation')?JSON.parse(sessionStorage.getItem('userInformation')):{};
+const defaultState = {
+    bookOrder,
+    parkingLot,
+    userInformation,
     isModalVisible: false,
     userInfo:null
-}
-export default (state = initState, action) => {
+};
+
+
+
+
+export default (state = defaultState, action) => {
     const stateCopy = {...state}
     switch( action.type ) {
         case 'INIT_BMAP': {
@@ -35,11 +45,18 @@ export default (state = initState, action) => {
             return stateCopy
         }
         case 'SET_PARKINGLOT': {
+            sessionStorage.setItem('parkingLot',JSON.stringify(action.parkingLot))
             stateCopy.parkingLot = action.parkingLot
             return stateCopy
         }
         case 'SAVE_BOOKORDER': {
-            stateCopy.bookOrder = action.bookOrder
+            sessionStorage.setItem('bookOrder', JSON.stringify(action.order));
+            stateCopy.bookOrder = action.order
+            return stateCopy
+        }
+        case 'USER_INFORMATION': {
+            sessionStorage.setItem('userInformation', JSON.stringify(action.userInformation));
+            stateCopy.userInformation = action.userInformation
             return stateCopy
         }
         case 'CHANGE_VISIBLE': {

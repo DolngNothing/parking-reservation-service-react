@@ -20,6 +20,9 @@ module.exports = {
         "react/forbid-prop-types": 1,
         "react/prop-types": 1,
         "import/prefer-default-export": 1,
-        "react/jsx-filename-extension": 1
+        "react/jsx-filename-extension": 1,
+        "react/forbid-prop-types":1,
+        "react/prop-types":1,
+        "react/no-deprecated": 0
     }
   };

@@ -1,7 +1,21 @@
 import axios from 'axios'
 import { message } from 'antd';
 
-const baseUrl = 'http://10.222.29.146:8090'
+
+
+axios.defaults.withCredentials = true
+axios.defaults.cressDomain = true
+axios.defaults.baseUrl = "http://10.222.29.209:8090"
+
+const baseUrl = 'http://10.222.29.209:8090'
+
+export function getOrder(orderID) {
+    return axios({
+        method: 'get',
+        url: `${baseUrl}/parkingOrders?userId=${orderID}`,
+        withCredentials: true
+    })
+}
 
 export function getOrders() {
     return axios({
@@ -13,8 +27,8 @@ export function getOrders() {
 export function saveOrder(order) {
     return axios({
         method: 'post',
-        data: order,
-        url:`${baseUrl}/parkingOrders`
+        url:`${baseUrl}/parkingOrders`,
+        data: order
     })
 }
 
@@ -33,14 +47,6 @@ export function userLogin(userInfo) {
     })
 }
 
-export function getOrder(orderID) {
-    return axios({
-        method: 'get',
-        url: `${baseUrl}/parkingOrders?userId=${orderID}`,
-        withCredentials: true
-    })
-}
-
 axios.interceptors.response.use(response => {
     console.log("return data")
     if(response.status === 200)
@@ -49,3 +55,32 @@ axios.interceptors.response.use(response => {
 },error => {
     message.error(error.response.data.message);
 })
+
+export function comfirmOrder(orderID) {
+    return axios({
+        method:'patch',
+        url:`${baseUrl}/parkingOrders/${orderID}?type=1`,
+        data:{
+            status:"ALREADY_SURE"
+        }
+    })
+}
+
+export function cancelOrder(orderID) {
+    return axios({
+        method:'patch',
+        url:`${baseUrl}/parkingOrders/${orderID}`,
+        data:{
+            status:"DELETED"
+        }
+    })
+}
+
+export function loginTest(userInfo) {
+    return axios({
+        method: 'post',
+        url: `${baseUrl}/user/login`,
+        data: userInfo,
+        withCredentials: true
+    })
+}

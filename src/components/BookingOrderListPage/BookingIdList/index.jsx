@@ -15,8 +15,8 @@ class BookingIdList extends React.Component {
     
     componentWillMount() {
       loginTest({
-        "phoneNumber": "13149306738",
-        "password": 456
+        "phoneNumber": "18710659057",
+        "password": 123
       }).then((response) =>{
         console.log("response", response)
         axios.defaults.withCredentials=true;

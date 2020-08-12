@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { message } from 'antd';
 
 
 
@@ -47,14 +46,6 @@ export function userLogin(userInfo) {
     })
 }
 
-axios.interceptors.response.use(response => {
-    console.log("return data")
-    if(response.status === 200)
-        return Promise.resolve(response)
-    return Promise.reject(response)
-},error => {
-    message.error(error.response.data.message);
-})
 
 export function comfirmOrder(orderID) {
     return axios({

@@ -22,7 +22,10 @@ class BookingContent extends React.Component {
             </div>
             <div className="booking-content-center">
               <div className="booking-content">
-                <OrderDetail />
+                <OrderDetail
+bookOrder={this.props.bookOrder}
+                            setBookOrder={this.props.setBookOrder}
+                />
               </div>
             </div>
             <div className="show-logo" />

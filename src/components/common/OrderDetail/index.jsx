@@ -98,7 +98,7 @@ class OrderDetail extends React.Component {
 
 	render() {
 		// console.log(this.props)
-		const { parkingLotName, location, carNumber, parkingStartTime, parkingEndTime, phone, mail, price, status } = this.props.bookOrder
+		const { parkingLotName, location, carNumber, parkingStartTime, parkingEndTime, phoneNumber, email, price, status } = this.props.bookOrder
 		const { isComfirmBtnShow, isCancelBtnShow } = this.state
 		return (
 			<div className="booking-content">
@@ -117,8 +117,8 @@ class OrderDetail extends React.Component {
        					{' '}
 						{parkingEndTime}
 					</Descriptions.Item>
-					<Descriptions.Item label="手机">{phone}</Descriptions.Item>
-					<Descriptions.Item label="邮箱">{mail}</Descriptions.Item>
+					<Descriptions.Item label="手机">{phoneNumber}</Descriptions.Item>
+					<Descriptions.Item label="邮箱">{email}</Descriptions.Item>
 					<Descriptions.Item label="费用">
 						{price}
 						￥

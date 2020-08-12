@@ -1,6 +1,11 @@
+const bookOrder = sessionStorage.getItem('bookOrder')?JSON.parse(sessionStorage.getItem('bookOrder')):{};
+const parkingLot = sessionStorage.getItem('parkingLot')?JSON.parse(sessionStorage.getItem('parkingLot')):{};
+const defaultState = {
+    bookOrder,
+    parkingLot
+};
 
-
-export default (state = {}, action) => {
+export default (state = defaultState, action) => {
     const stateCopy = {...state}
     switch( action.type ) {
         case 'INIT_BMAP': {
@@ -33,10 +38,12 @@ export default (state = {}, action) => {
             return stateCopy
         }
         case 'SET_PARKINGLOT': {
+            sessionStorage.setItem('parkingLot',JSON.stringify(action.parkingLot))
             stateCopy.parkingLot = action.parkingLot
             return stateCopy
         }
         case 'SAVE_BOOKORDER': {
+            sessionStorage.setItem('bookOrder', JSON.stringify(action.order));
             stateCopy.bookOrder = action.order
             return stateCopy
         }

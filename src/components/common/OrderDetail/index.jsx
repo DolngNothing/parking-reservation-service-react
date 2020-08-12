@@ -21,7 +21,8 @@ class OrderDetail extends React.Component {
 				isComfirmBtnShow: 'inline-block'
 			})
 		}
-		if (new Date() >= parkingStartTime.valueOf()) {
+
+		if (new Date() >= parkingStartTime.valueOf() || status === "DELETED") {
 			this.setState({
 				isCancelBtnShow: 'none'
 			})

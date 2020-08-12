@@ -35,3 +35,7 @@ export const setBookOrder = (order) => ({
     type: "SAVE_BOOKORDER",
     order
 })
+export const isLoginModelShow = (show) => ({
+    type: "LOGIN_MODEL",
+    show
+})

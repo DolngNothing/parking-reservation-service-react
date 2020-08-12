@@ -12,8 +12,6 @@ const defaultState = {
 };
 
 
-
-
 export default (state = defaultState, action) => {
     const stateCopy = {...state}
     switch( action.type ) {
@@ -64,6 +62,14 @@ export default (state = defaultState, action) => {
         case 'SAVE_EMPTYPOSITION': {
             sessionStorage.setItem('emptyPosition', JSON.stringify(action.emptyPosition));
             stateCopy.emptyPosition = action.emptyPosition
+            return stateCopy
+        }
+        case 'CHANGE_VISIBLE': {
+            stateCopy.isModalVisible = action.isModalVisible
+            return stateCopy
+        }
+        case 'SAVE_LOGIN_STATUS': {
+            stateCopy.userInfo = action.userInfo
             return stateCopy
         }
         default: {

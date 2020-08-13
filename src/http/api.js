@@ -84,3 +84,10 @@ export function getCommentsByParkingLotId(parkingLotId) {
         url: `${baseUrl}/comments?parkingLotId=${parkingLotId}`
     })
 }
+
+export function getFetchCode(orderID) {
+    return axios({
+        method: 'get',
+        url: `${baseUrl}/parkingOrders/fetchCode/${orderID}`
+    })
+}

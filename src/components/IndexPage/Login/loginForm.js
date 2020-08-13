@@ -27,11 +27,9 @@ export const CollectionCreateForm = (props) => {
           saveLoginStatus(userInfo)
           changeVisible(false);
           changeValidStatus(0);
-        }else{
-          changeVisible(true);
-          changeValidStatus(0);
         }
-      }).catch(()=>{
+      }).catch((error)=>{
+        message.error(error.response.data.message)
         changeVisible(true);
         changeValidStatus(0);
       })

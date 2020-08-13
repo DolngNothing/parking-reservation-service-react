@@ -1,9 +1,9 @@
 import React from 'react'
-import { Descriptions, Button, notification } from 'antd'
+import { Descriptions, Button, notification, Modal, message } from 'antd'
 import './index.scss'
 import PropTypes from 'prop-types';
 import SockJsClient from 'react-stomp';
-import { comfirmOrder, cancelOrder } from '../../../http/api'
+import { comfirmOrder, cancelOrder, getFetchCode } from '../../../http/api'
 
 class OrderDetail extends React.Component {
 	constructor(props) {
@@ -11,25 +11,43 @@ class OrderDetail extends React.Component {
 		this.state = {
 			isComfirmBtnShow: 'none',
 			isCancelBtnShow: 'inline-block',
+			displayModal: false,
+			fetchCode: '',
 			topics:[]
 		}
 	}
 
 
-	componentDidMount() {
-		const { status, parkingStartTime } = this.props.bookOrder
+	componentWillReceiveProps(nextProps) {
+		const { status } = nextProps.bookOrder
 		if (status === "WAIT_FOR_SURE") {
 			this.setState({
-				isComfirmBtnShow: 'inline-block'
+				isComfirmBtnShow: 'inline-block',
+				isCancelBtnShow: 'inline-block'
 			})
-		}
-
-		if (new Date() >= parkingStartTime.valueOf() || status === "DELETED") {
+		}else if(status === "ALREADY_SURE") {
 			this.setState({
-				isCancelBtnShow: 'none'
+				isComfirmBtnShow: 'none',
+				isCancelBtnShow: 'inline-block'
+			})
+		} else  {
+			this.setState({
+				isCancelBtnShow: 'none',
+				isComfirmBtnShow: 'none',
 			})
 		}
+	}
 
+	setModalVisible(displayModal) {
+		getFetchCode(this.props.bookOrder.id).then(response =>{
+			this.setState({
+				fetchCode: `data:image/gif;base64,${ response.data}`
+			})
+			this.setState({ displayModal });
+		}).catch(error =>{
+			message.error(error.response.data.message)
+		})
+		
 	}
 
 	comfirmOrder = () => {
@@ -137,6 +155,7 @@ url='http://localhost:8090/endpoint'
 						{/* <span className={status === "ALREADY_SURE" ? "completed" : "uncompleted"}> */}
 						<span style={{ color: this.getOrderStatusColor(status) }}>
 							{this.getOrderStatus(status)}
+							<span className={status==="ALREADY_SURE"?"QRcode":"hiddenQRcode"} onClick={() => this.setModalVisible(true)}>点击查看停车码</span>
 						</span>
 					</Descriptions.Item>
 				</Descriptions>
@@ -151,6 +170,17 @@ url='http://localhost:8090/endpoint'
 						<Button onClick={this.cancelOrder}>取消预约</Button>
 					</div>
 				</div>
+				<Modal
+					className="fetchCodeModal"
+					title="停车码"
+					centered
+					visible={this.state.displayModal}
+					onOk={() => this.setModalVisible(false)}
+					onCancel={() => this.setModalVisible(false)}
+					footer={null}
+				>
+					<img src={this.state.fetchCode} alt="fetchCode" className="fetchCodeImg" />
+				</Modal>
 			</div>
 		)
 	}

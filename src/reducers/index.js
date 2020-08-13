@@ -7,7 +7,8 @@ const defaultState = {
     userInformation,
     isModalVisible: false,
     userInfo:null,
-    flag:0
+    flag:0,
+    comment: {}
 };
 
 
@@ -73,6 +74,10 @@ export default (state = defaultState, action) => {
         }
         case 'CHANGE_VALID_STATUS': {
             stateCopy.flag = action.flag
+            return stateCopy
+        }
+        case 'SET_COMMENT': {
+            stateCopy.comment = action.comment
             return stateCopy
         }
         default: {

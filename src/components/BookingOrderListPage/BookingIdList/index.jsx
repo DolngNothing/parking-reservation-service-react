@@ -1,7 +1,7 @@
 import React from 'react'
 import './index.scss'
 import '../../../css/icon.css'
-import { getOrder } from '../../../http/api'
+import { getOrder, getComment } from '../../../http/api'
 
 
 class BookingIdList extends React.Component {
@@ -24,10 +24,6 @@ class BookingIdList extends React.Component {
 
   }
 
-  componentWillReceiveProps(nextProps) {
-    console.log(nextProps.bookOrder)
-  }
-
   getOrderStatus = (status) => {
     if (status === "ALREADY_SURE") {
       return "预约成功"
@@ -48,6 +44,8 @@ class BookingIdList extends React.Component {
 
   selectOrder = (item) => {
     this.props.setBookOrder(item)
+    getComment(item.id).then(() => {
+    })
   }
 
   render() {

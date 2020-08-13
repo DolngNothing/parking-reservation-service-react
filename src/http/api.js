@@ -106,3 +106,10 @@ export function addComment(comment) {
         data: comment
     })
 }
+
+export function getComment(orderID) {
+    return axios({
+        method: 'get',
+        url: `${baseUrl}/comments?orderId=${orderID}`
+    })
+}

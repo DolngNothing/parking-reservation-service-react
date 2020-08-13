@@ -3,7 +3,8 @@ import Comment from '../components/common/comment'
 
 const mapStateToProps = state => {
     return {
-      bookOrder: state.bookOrder
+      bookOrder: state.bookOrder,
+      comment: state.comment
     }
   }
 

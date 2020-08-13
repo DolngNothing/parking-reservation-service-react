@@ -69,3 +69,7 @@ export const setQrCode = (qrCode) => ({
     type: "QR_CODE",
     qrCode
 })
+export const setComment = (comment) => ({
+    type: "SET_COMMENT",
+    comment
+})

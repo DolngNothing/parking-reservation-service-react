@@ -24,6 +24,7 @@ class BookingOrderList extends React.Component {
         <BookingIdList
           setBookOrder={this.props.setBookOrder}
           bookOrder={this.props.bookOrder}
+          setComment={this.props.setComment}
         />
         <BookingContent
           bookOrder={this.props.bookOrder}

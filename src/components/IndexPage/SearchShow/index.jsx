@@ -64,7 +64,7 @@ class SearchShow extends React.Component {
     sortWell = (a, b) => {
       console.log(this.state.sort)
       if(this.state.sort === '距离') {
-        return b.distance - a.distance
+        return a.distance - b.distance
       } else if(this.state.sort === '价格') {
         return a.price - b.price
       } else if(this.state.sort === '评分') {
@@ -136,6 +136,7 @@ class SearchShow extends React.Component {
                       </div>
                       <div className="distance-wrapper">
                         <span>距离: {parseInt(item.distance)}M</span>
+                        <span style={{marginLeft: "10px"}}>价格: {parseInt(item.price)}元</span>
                       </div>
                     </div>
                     <div className="avg-score">{item.avgScore}</div>

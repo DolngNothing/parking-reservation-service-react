@@ -55,3 +55,8 @@ export const setUserInformation = (userInformation) => ({
     type: "USER_INFORMATION",
     userInformation
 })
+
+export const changeValidStatus = (flag) => ({
+    type: "CHANGE_VALID_STATUS",
+    flag
+})

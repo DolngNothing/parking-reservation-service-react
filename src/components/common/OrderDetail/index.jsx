@@ -14,20 +14,25 @@ class OrderDetail extends React.Component {
 	}
 
 
-	componentDidMount() {
-		const { status, parkingStartTime } = this.props.bookOrder
+	componentWillReceiveProps(nextProps) {
+		const { status } = nextProps.bookOrder
 		if (status === "WAIT_FOR_SURE") {
 			this.setState({
-				isComfirmBtnShow: 'inline-block'
+				isComfirmBtnShow: 'inline-block',
+				isCancelBtnShow: 'inline-block'
 			})
-		}
-
-		if (new Date() >= parkingStartTime.valueOf() || status === "DELETED") {
+			console.log("test")
+		}else if(status === "ALREADY_SURE") {
 			this.setState({
-				isCancelBtnShow: 'none'
+				isComfirmBtnShow: 'none',
+				isCancelBtnShow: 'inline-block'
+			})
+		} else  {
+			this.setState({
+				isCancelBtnShow: 'none',
+				isComfirmBtnShow: 'none',
 			})
 		}
-
 	}
 
 	comfirmOrder = () => {

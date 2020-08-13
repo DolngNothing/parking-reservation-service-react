@@ -1,13 +1,22 @@
-.comment-wrapper {
-    width: 100%;
+@import '../../../css/global.scss';
+
+.comment {
+    width: 90%;
     display: flex;
     flex-direction: column;
     align-items: center;
     .star-wrapper {
+        width: 80%;
         margin-bottom: 20px;
+        display: flex;
+        justify-content: flex-start;
     }
     .comment-text {
-        width: 50%;
+        width: 80%;
+        margin-bottom: 20px;
+        .comment-input {
+            
+        }
 
     }
     .commit-wrapper {

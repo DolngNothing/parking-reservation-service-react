@@ -16,7 +16,7 @@ class BookingOrderList extends React.Component {
             <span className="span-back">
               <LeftOutlined />
             返回首页
-          </span>
+            </span>
           </Link>
           &nbsp;&nbsp;|
           <span className="span-title">订单详情</span>

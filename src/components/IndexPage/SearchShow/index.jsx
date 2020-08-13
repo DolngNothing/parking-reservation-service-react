@@ -69,7 +69,9 @@ class SearchShow extends React.Component {
         return a.price - b.price
       } else if(this.state.sort === '评分') {
         return b.avgScore - a.avgScore
-      } 
+      } else {
+        return (0.5 * (1-b.distance/2000) + 0.25 * (b.avgScore/5.0) + 0.25 * (1-b.price)) - (0.5 * (1-a.distance/2000) + 0.25 * (a.avgScore/5.0) + 0.25 * (1-a.price))
+      }
     }
 
     typeChange = (type) =>{

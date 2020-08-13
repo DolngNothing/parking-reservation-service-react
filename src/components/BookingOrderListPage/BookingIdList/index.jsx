@@ -24,6 +24,10 @@ class BookingIdList extends React.Component {
 
   }
 
+  componentWillReceiveProps(nextProps) {
+    console.log(nextProps.bookOrder)
+  }
+
   getOrderStatus = (status) => {
     if (status === "ALREADY_SURE") {
       return "预约成功"

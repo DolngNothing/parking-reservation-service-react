@@ -26,7 +26,7 @@ class BookInfoForm extends React.Component {
       mail: '',
       startTime: '',
       endTime: '',
-      topics:['/topic/hello']
+      topics: ['/topic/hello']
     }
   }
 
@@ -61,26 +61,21 @@ class BookInfoForm extends React.Component {
   }
 
   setDate = (e) => {
+    const { id } = this.props.parkingLot
     if (e != null) {
       const startTime = new Date(e[0]._d).getTime(); // 本地时间距 1970 年 1 月 1 日午夜（GMT 时间）之间的毫秒数
       const endTime = new Date(e[1]._d).getTime();
+      const topic= [`/topic/${startTime}/${endTime}/${id}`,'/topic/hello']
+      this.setState({ topics:  []}, () => {
+        this.setState({ topics:  topic})
+        this.clientRef.sendMessage('/register', `/${startTime}/${endTime}/${id}`)
+      })
       this.setState({ startTime })
       this.setState({ endTime })
     } else {
       this.setState({ startTime: '' })
       this.setState({ endTime: '' })
-    }
-    // 订阅
-    if (e != null) {
-      const startTime = new Date(e[0]._d).getTime(); // 本地时间距 1970 年 1 月 1 日午夜（GMT 时间）之间的毫秒数
-      const endTime = new Date(e[1]._d).getTime();
-
-      const {id} = this.props.parkingLot
-      this.setState({ topics:[`/topic/${startTime}/${endTime}/${id}`,'/topic/hello']  },()=>{
-        this.clientRef.sendMessage('/register', `/${startTime}/${endTime}/${id}`)
-      })
-    } else {
-      console.log("什么都没有");
+      this.setState({topics: ['/topic/hello']})
     }
   }
 
@@ -93,7 +88,6 @@ class BookInfoForm extends React.Component {
         , parkingLotId: this.props.parkingLot.id
       }
       saveOrder(order).then((response) => {
-        console.log(response.data)
         this.props.setBookOrder(response.data)
         this.props.history.push('/orderDetail')
         // 还有个跳转
@@ -129,10 +123,11 @@ class BookInfoForm extends React.Component {
     const { liscenValiType } = this.state;
     const { phoneValitType } = this.state;
     const { mailValiType } = this.state;
+    console.log(this.state.topics);
     return (
       <div>
         <SockJsClient
-url='http://localhost:8090/endpoint'
+          url='http://localhost:8090/endpoint'
           topics={this.state.topics}
           onMessage={(emptyPosition) => { this.props.saveEmptyPosition(emptyPosition); }}
           ref={(client) => { this.clientRef = client }}
@@ -209,7 +204,7 @@ BookInfoForm.propTypes = {
   parkingLot: PropTypes.any.isRequired,
   setBookOrder: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
-  saveEmptyPosition:PropTypes.func.isRequired
+  saveEmptyPosition: PropTypes.func.isRequired
 }
 
 export default BookInfoForm;

@@ -173,11 +173,6 @@ class BookInfoForm extends React.Component {
               提交预约
             </Button>
           </Form.Item>
-          <Form.Item>
-            <Button htmlType="submit" onClick={this.back}>
-              返回首页
-            </Button>
-          </Form.Item>
         </Form>
       </div>
     );

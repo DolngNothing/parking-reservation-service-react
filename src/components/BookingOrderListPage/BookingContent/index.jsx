@@ -1,6 +1,9 @@
 import React from 'react'
 import './index.scss'
 import '../../../css/icon.css'
+import { Link } from "react-router-dom";
+import OrderDetail from '../../common/OrderDetail'
+import Comment from '../../common/comment'
 
 class BookingContent extends React.Component {
     constructor(props) {
@@ -14,20 +17,22 @@ class BookingContent extends React.Component {
         return (
           <div className="booking-content-wrapper">
             <div className="top-search">
-              <div className="user-id-input-wrapper">
-                <span className="icon-search" />
-                <input type="text" placeholder="输入用户ID查询" className="user-id-input" />
-              </div>
+              <Link to="/">回到首页</Link>
             </div>
             <div className="booking-content-center">
               <div className="booking-content">
-                {/* <OrderDetail
+                {this.props.bookOrder.id !== undefined?(
+                  <OrderDetail
                   bookOrder={this.props.bookOrder}
                   setBookOrder={this.props.setBookOrder}
-                /> */}
+                  />
+                  ):''}
+                
               </div>
             </div>
-            <div className="show-logo" />
+            <div className="comment-wrapper">
+              <Comment />
+            </div>
           </div>
 )
     }

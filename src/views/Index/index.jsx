@@ -22,6 +22,7 @@ class Index extends React.Component {
               setDestination={this.props.setDestination}
               setParkingLots={this.props.setParkingLots}
               changeVisible={this.props.changeVisible}
+              history={this.props.history}
               userInfo={this.props.userInfo}
             />
             <SearchShow
@@ -32,6 +33,8 @@ class Index extends React.Component {
               setParkingLot={this.props.setParkingLot}
             />
             <CollectionCreateForm
+              changeValidStatus={this.props.changeValidStatus}
+              flag={this.props.flag}
               saveLoginStatus={this.props.saveLoginStatus}
               isModalVisible={this.props.isModalVisible}
               changeVisible={this.props.changeVisible}

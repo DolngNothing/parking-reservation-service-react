@@ -6,7 +6,8 @@ const defaultState = {
     parkingLot,
     userInformation,
     isModalVisible: false,
-    userInfo:null
+    userInfo:null,
+    flag:0
 };
 
 
@@ -67,8 +68,12 @@ export default (state = defaultState, action) => {
             return stateCopy
         }
         case 'SAVE_LOGIN_STATUS': {
-            sessionStorage.setItem('userInfo', JSON.stringify(action.userInfo));
+            sessionStorage.setItem('userInformation', JSON.stringify(action.userInfo))
             stateCopy.userInfo = action.userInfo
+            return stateCopy
+        }
+        case 'CHANGE_VALID_STATUS': {
+            stateCopy.flag = action.flag
             return stateCopy
         }
         default: {

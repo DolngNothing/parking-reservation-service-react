@@ -11,7 +11,8 @@ class TopNavigation extends React.Component {
     super(props)
     this.state = {
       address: '',
-      regAddress: []
+      regAddress: [],
+      display: 'none'
     }
   }
 
@@ -103,9 +104,31 @@ class TopNavigation extends React.Component {
   }
 
   changeModalDisplay = () => {
-    if(this.props.userInfo === null){
+    /* if(this.props.userInfo === null || !sessionStorage.getItem("userInformation")) */
+    if(!sessionStorage.getItem("userInformation")){
       this.props.changeVisible(true)
+    } else {
+      this.setState({
+        display: ''
+      })
     }
+  }
+
+  jumpToOrderList = () => {
+    if(sessionStorage.getItem('userInformation')) {
+      this.props.history.push({pathname:"/bookingOrderList"})
+    } else {
+      alert("请先登录")
+    }
+    
+  }
+
+  cancelUser = () => {
+    this.setState({
+      display: 'none'
+    })
+    sessionStorage.removeItem("userInformation")
+    alert("已注销")
   }
 
   render() {
@@ -115,7 +138,7 @@ class TopNavigation extends React.Component {
           <Link to="/">关于我们</Link>
         </div>
         <div className="booking-enter">
-          <span><Link to="/bookingOrderList">订单查询</Link></span>
+          <span onClick={this.jumpToOrderList}>订单查询</span>
         </div>
         <div className="address-input-wrapper">
           <span className="icon-search search-btn" />
@@ -139,6 +162,9 @@ class TopNavigation extends React.Component {
         </div>
         <div className="user-login">
           <span className="icon-user" onClick={this.changeModalDisplay}></span>
+        </div>
+        <div className="cancel-wrapper" onClick={this.cancelUser} style={{"display": this.state.display}}>
+          <span>注销</span> 
         </div>
       </div>
 )

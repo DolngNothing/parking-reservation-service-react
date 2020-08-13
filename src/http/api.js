@@ -4,14 +4,16 @@ import axios from 'axios'
 
 axios.defaults.withCredentials = true
 axios.defaults.cressDomain = true
-axios.defaults.baseUrl = "http://localhost:8090"
 
-const baseUrl = 'http://localhost:8090'
+axios.defaults.baseUrl = "http://10.222.29.209:8090"
 
-export function getOrder(orderID) {
+const baseUrl = 'http://10.222.29.209:8090'
+
+
+export function getOrder(userID) {
     return axios({
         method: 'get',
-        url: `${baseUrl}/parkingOrders?userId=${orderID}`,
+        url: `${baseUrl}/parkingOrders?userId=${userID}`,
         withCredentials: true
     })
 }

@@ -55,7 +55,17 @@ export const setUserInformation = (userInformation) => ({
     type: "USER_INFORMATION",
     userInformation
 })
+
+export const changeValidStatus = (flag) => ({
+    type: "CHANGE_VALID_STATUS",
+    flag
+})
+
 export const saveEmptyPosition = (emptyPosition) => ({
     type: "SAVE_EMPTYPOSITION",
     emptyPosition
+})
+export const setQrCode = (qrCode) => ({
+    type: "QR_CODE",
+    qrCode
 })

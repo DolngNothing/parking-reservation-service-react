@@ -13,7 +13,7 @@ class OrderDetail extends React.Component {
 			isCancelBtnShow: 'inline-block',
 			displayModal: false,
 			fetchCode: '',
-			topics:[]
+			topics: []
 		}
 	}
 
@@ -25,12 +25,12 @@ class OrderDetail extends React.Component {
 				isComfirmBtnShow: 'inline-block',
 				isCancelBtnShow: 'inline-block'
 			})
-		}else if(status === "ALREADY_SURE") {
+		} else if (status === "ALREADY_SURE") {
 			this.setState({
 				isComfirmBtnShow: 'none',
 				isCancelBtnShow: 'inline-block'
 			})
-		} else  {
+		} else {
 			this.setState({
 				isCancelBtnShow: 'none',
 				isComfirmBtnShow: 'none',
@@ -39,19 +39,19 @@ class OrderDetail extends React.Component {
 	}
 
 	setModalVisible(displayModal) {
-		getFetchCode(this.props.bookOrder.id).then(response =>{
+		getFetchCode(this.props.bookOrder.id).then(response => {
 			this.setState({
-				fetchCode: `data:image/gif;base64,${ response.data}`
+				fetchCode: `data:image/gif;base64,${response.data}`
 			})
 			this.setState({ displayModal });
-		}).catch(error =>{
+		}).catch(error => {
 			message.error(error.response.data.message)
 		})
-		
+
 	}
 
 	comfirmOrder = () => {
-		const { id,parkingStartTime,parkingEndTime,parkingLotId } = this.props.bookOrder
+		const { id, parkingStartTime, parkingEndTime, parkingLotId } = this.props.bookOrder
 		const { bookOrder } = this.props
 		bookOrder.status = "ALREADY_SURE"
 		this.props.setBookOrder(bookOrder)
@@ -68,7 +68,7 @@ class OrderDetail extends React.Component {
 				})
 			}
 		})
-		
+
 
 	}
 
@@ -125,7 +125,7 @@ class OrderDetail extends React.Component {
 		return (
 			<div className="booking-content">
 				<SockJsClient
-url='http://localhost:8090/endpoint'
+					url='http://10.222.29.209:8090/endpoint'
 					topics={this.state.topics}
 					onMessage={(msg) => { alert(msg); }}
 					ref={(client) => { this.clientRef = client }}
@@ -148,14 +148,14 @@ url='http://localhost:8090/endpoint'
 					<Descriptions.Item label="手机">{phoneNumber}</Descriptions.Item>
 					<Descriptions.Item label="邮箱">{email}</Descriptions.Item>
 					<Descriptions.Item label="费用">
-					￥
+						￥
 						{price}
 					</Descriptions.Item>
 					<Descriptions.Item label="订单状态">
 						{/* <span className={status === "ALREADY_SURE" ? "completed" : "uncompleted"}> */}
 						<span style={{ color: this.getOrderStatusColor(status) }}>
 							{this.getOrderStatus(status)}
-							<span className={status==="ALREADY_SURE"?"QRcode":"hiddenQRcode"} onClick={() => this.setModalVisible(true)}>点击查看停车码</span>
+							<span className={status === "ALREADY_SURE" ? "QRcode" : "hiddenQRcode"} onClick={() => this.setModalVisible(true)}>点击查看停车码</span>
 						</span>
 					</Descriptions.Item>
 				</Descriptions>

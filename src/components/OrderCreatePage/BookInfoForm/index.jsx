@@ -106,21 +106,25 @@ class BookInfoForm extends React.Component {
     return time < Date.now() - 8.64e7;
   }
 
+  back= ()=>{
+    this.props.history.push('/')
+  }
+
 
   render() {
     const { liscenValiType } = this.state;
     const { phoneValitType } = this.state;
     console.log(this.state.topics);
     return (
-      <div>
+      <div className="form-warp">
         <SockJsClient
-          url='http://localhost:8090/endpoint'
+          url='http://10.222.29.209:8090/endpoint'
           topics={this.state.topics}
           onMessage={(emptyPosition) => { this.props.saveEmptyPosition(emptyPosition); }}
           ref={(client) => { this.clientRef = client }}
         />
         <Form
-          layout="horizontal"
+          layout="inline"
         >
           <Form.Item
             help="请填写正确的车牌号"
@@ -166,6 +170,11 @@ class BookInfoForm extends React.Component {
           <Form.Item>
             <Button type="primary" htmlType="submit" onClick={this.saveBookForm}>
               提交预约
+            </Button>
+          </Form.Item>
+          <Form.Item>
+            <Button htmlType="submit" onClick={this.back}>
+              返回首页
             </Button>
           </Form.Item>
         </Form>

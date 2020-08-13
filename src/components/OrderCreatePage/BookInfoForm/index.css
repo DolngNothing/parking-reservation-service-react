@@ -1,11 +1,9 @@
-.ant-form-item-control{
-    margin: 10px !important;
+.form-warp{
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-
-.ant-picker{
+.ant-picker {
     height: 40px !important;
-}
-
-.form-width{
-    width: 400px;
 }

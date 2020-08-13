@@ -8,32 +8,34 @@ class OrderCreatePage extends React.Component {
 
   render() {
     return (
+
       <div className="container">
         <div className="content">
           <div className="item">
-            <ParkingLotInfo 
-            parkingLot={this.props.parkingLot}
-            emptyPosition={this.props.emptyPosition}
+            <ParkingLotInfo
+              parkingLot={this.props.parkingLot}
+              emptyPosition={this.props.emptyPosition}
             />
           </div>
           <div className="item">
-            <BookInfoForm 
-            parkingLot={this.props.parkingLot}
-            setBookOrder={this.props.setBookOrder}
-            history={this.props.history}
-            saveEmptyPosition={this.props.saveEmptyPosition}
+            <BookInfoForm
+              parkingLot={this.props.parkingLot}
+              setBookOrder={this.props.setBookOrder}
+              history={this.props.history}
+              saveEmptyPosition={this.props.saveEmptyPosition}
             />
           </div>
         </div>
       </div>
+
     );
   }
 }
 
 
 OrderCreatePage.propTypes = {
-  parkingLot:PropTypes.object.isRequired,
-  setBookOrder:PropTypes.func.isRequired,
+  parkingLot: PropTypes.object.isRequired,
+  setBookOrder: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired
 }
 

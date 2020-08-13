@@ -78,9 +78,31 @@ export function loginTest(userInfo) {
     })
 }
 
+
 export function parkingLots() {
     return axios({
         method: 'get',
         url: '/parkingLots'
+    })
+}
+export function getCommentsByParkingLotId(parkingLotId) {
+    return axios({
+        method: 'get',
+        url: `${baseUrl}/comments?parkingLotId=${parkingLotId}`
+    })
+}
+
+export function getFetchCode(orderID) {
+    return axios({
+        method: 'get',
+        url: `${baseUrl}/parkingOrders/fetchCode/${orderID}`
+    })
+}
+
+export function addComment(comment) {
+    return axios({
+        method: 'post',
+        url: `${baseUrl}/comments`,
+        data: comment
     })
 }

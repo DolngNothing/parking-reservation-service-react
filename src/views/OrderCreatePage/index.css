@@ -4,16 +4,6 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
+    text-align: left;
 }
 
-.content {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-width: 1200px;
-}
-
-.content .item {
-    margin: 0 15px;
-}

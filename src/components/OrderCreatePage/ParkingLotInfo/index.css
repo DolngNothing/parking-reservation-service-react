@@ -1,7 +1,29 @@
-.parkingInfo{
-    text-align: left;
+.element::-webkit-scrollbar {
+    display:none
 }
 
-.diver{
-    margin: 5px;
+::-webkit-scrollbar {
+    display: none; /* Chrome Safari */
+}
+
+.parkingInfo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.parkingLot-wrapper{
+    margin: 0 35px;
+}
+
+.comment-wrapper{
+    width: 500px;
+    text-align: left;
+    height: 590px;
+    overflow-y: scroll;
+    margin: 0 35px;
+}
+
+.comment-wrapper .comment-li{
+    border-bottom: 1px #d9d9d9 solid;
 }

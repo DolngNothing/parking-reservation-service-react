@@ -75,7 +75,7 @@ class OrderDetail extends React.Component {
 	cancelOrder = () => {
 		const { parkingStartTime, id } = this.props.bookOrder
 		const date = new Date().getTime()
-		if (date >= parkingStartTime.valueOf()) {
+		if (date >= Date.parse(parkingStartTime)) {
 			notification.warning({
 				message: 'Sorry',
 				description: '已超时，无法取消预约！',

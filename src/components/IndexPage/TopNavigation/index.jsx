@@ -3,7 +3,8 @@ import BMap from 'BMap'
 import AMap from 'AMap'
 import './index.scss'
 import { Link } from "react-router-dom";
-import { getParkingLots } from '../../../http/api'
+import { getParkingLots, parkingLots } from '../../../http/api'
+import { Button } from 'antd';
 
 class TopNavigation extends React.Component {
 
@@ -15,6 +16,7 @@ class TopNavigation extends React.Component {
       display: 'none'
     }
   }
+
 
   onChange = (e) => {
     this.setState({
@@ -81,10 +83,10 @@ class TopNavigation extends React.Component {
       address: title
     })
     const _this = this
-    /* this.getLngAndLat(e.target.textContent, map) */
     getParkingLots(point.lng, point.lat, title).then((response) => {
       _this.props.setParkingLots(response.data)
     }).catch(error =>{})
+
     const destinationMarker = new BMap.Marker(point);
     map.centerAndZoom(new BMap.Point(point.lng, point.lat), 16);
     map.addOverlay(destinationMarker);
@@ -107,11 +109,7 @@ class TopNavigation extends React.Component {
     /* if(this.props.userInfo === null || !sessionStorage.getItem("userInformation")) */
     if(!sessionStorage.getItem("userInformation")){
       this.props.changeVisible(true)
-    } else {
-      this.setState({
-        display: ''
-      })
-    }
+    } 
   }
 
   jumpToOrderList = () => {
@@ -160,12 +158,15 @@ class TopNavigation extends React.Component {
 ))}
           </div>   
         </div>
-        <div className="user-login">
-          <span className="icon-user" onClick={this.changeModalDisplay}></span>
-        </div>
-        <div className="cancel-wrapper" onClick={this.cancelUser} style={{"display": this.state.display}}>
-          <span>注销</span> 
-        </div>
+        
+          {sessionStorage.getItem("userInformation")?(<div className="img-wrapper">
+          <img className="img" src="https://pic3.zhimg.com/v2-ccfdc90c69dce8e0227960b45aa53c02_r.jpg" alt=""/>
+        </div>)
+            :(<div className="user-login"><span className="icon-user" onClick={this.changeModalDisplay}></span></div>)
+          }
+          <div className={sessionStorage.getItem("userInformation")?"cancel-wrapper":"cancel-hidden"} onClick={this.cancelUser}>
+            <Button danger>注销</Button>
+          </div>
       </div>
 )
   }

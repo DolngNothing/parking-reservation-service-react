@@ -61,13 +61,33 @@
             }
         }
     }
+    .select-wrapper {
+        width: 92%;
+        display: flex;
+        justify-content: space-between;
+        margin: 10px 10px;
+        .sort-select {
+            
+        }
+        .type-select {
+            
+        }
+    }
     .show-wrapper {
         width: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        margin-top: 20px;
+        overflow: hidden;
         .parking-lot {
-            width: 100%;
+            position: relative;
+            width: 90%;
             height: 70px;
             background-color: white;
             display: flex;
+            padding-top: 5px;
+            margin-bottom: 8px;
             cursor: pointer;
             .icon-position-wrapper {
                 .icon-position {
@@ -78,17 +98,40 @@
             .lot-msg-wrapper {
                 display: flex;
                 flex-direction: column;
-                .lot-name {
-                    color: #0066ff;
-                    font-size: 12px;
+                padding-left: 5px;
+                .lot-msg {
+                    display: flex;
+                    flex-direction: column;
+                    .lot-name {
+                        color: #0066ff;
+                        font-size: 12px;
+                        text-align: left;
+                    }
+                    .lot-address {
+    
+                    }
                 }
-                .lot-address {
-
+                .distance-wrapper {
+                        text-align: left;
+                        font-size: 12px;
                 }
+                
             }
-            .img-wrapper {
-
+            .avg-score {
+                position: absolute;
+                top: 5px;
+                right: 5px;
+                background-color: red;
+                color: white;
+                width: 24px;
+                height: 24px;
+                border-radius: 999px;
+                @include center();
             }
+            &:hover {
+                background-color: #eee;
+            }
+            
         }
     }
 }

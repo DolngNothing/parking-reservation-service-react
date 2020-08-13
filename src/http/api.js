@@ -77,3 +77,10 @@ export function loginTest(userInfo) {
         withCredentials: true
     })
 }
+
+export function parkingLots() {
+    return axios({
+        method: 'get',
+        url: '/parkingLots'
+    })
+}

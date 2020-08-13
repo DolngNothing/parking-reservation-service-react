@@ -116,21 +116,45 @@
     width: 50px;
     height: 50px;
     top: 50%;
-    right: 40px;
+    right: 100px;
     transform: translateY(-50%);
     background-color: #ccc;
     border-radius: 999px;
     .icon-user {
       color: #777;
     }
+    .img {
+      width: 50px;
+      height: 50px;
+      border-radius: 999px;
+    }
+  }
+  .img-wrapper {
+    font-size: 36px;
+    font-weight: bold;
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    right: 140px;
+    top: 4px;
+    border-radius: 999px;
+    .img {
+      width: 50px;
+      height: 50px;
+      border-radius: 999px;
+    }
   }
   .cancel-wrapper {
     position: absolute;
     z-index: 100;
     height: 100px;
-    width: 40px;
-    top: 85%;
-    right: 40px;
-    background-color: #666;
+    width: 100px;
+    top: 30%;
+    right: 30px;
+    font-size: 18px;;
+    color: rgb(102, 143, 255);
+  }
+  .cancel-hidden {
+    display: none;
   }
 }

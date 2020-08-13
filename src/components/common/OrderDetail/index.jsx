@@ -18,12 +18,29 @@ class OrderDetail extends React.Component {
 	}
 
 	componentWillMount(){
-		const { parkingStartTime } = this.props.bookOrder;
+		const { parkingStartTime,status } = this.props.bookOrder;
 		const date = new Date().getTime()
 		console.log(date, Date.parse(parkingStartTime))
 		if (date >= Date.parse(parkingStartTime)) {
 			this.setState({
 				isCancelBtnShow: 'none'
+			})
+		}
+
+		if (status === "WAIT_FOR_SURE") {
+			this.setState({
+				isComfirmBtnShow: 'inline-block',
+				isCancelBtnShow: 'inline-block'
+			})
+		} else if (status === "ALREADY_SURE") {
+			this.setState({
+				isComfirmBtnShow: 'none',
+				isCancelBtnShow: 'inline-block'
+			})
+		} else {
+			this.setState({
+				isCancelBtnShow: 'none',
+				isComfirmBtnShow: 'none',
 			})
 		}
 	}

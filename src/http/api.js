@@ -75,3 +75,10 @@ export function loginTest(userInfo) {
         withCredentials: true
     })
 }
+
+export function getFetchCode(orderID) {
+    return axios({
+        method: 'get',
+        url: `${baseUrl}/parkingOrders/fetchCode/${orderID}`
+    })
+}

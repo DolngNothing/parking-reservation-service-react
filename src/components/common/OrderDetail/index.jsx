@@ -1,15 +1,17 @@
 import React from 'react'
-import { Descriptions, Button, notification } from 'antd'
+import { Descriptions, Button, notification, Modal, message } from 'antd'
 import './index.scss'
 import PropTypes from 'prop-types';
-import { comfirmOrder, cancelOrder } from '../../../http/api'
+import { comfirmOrder, cancelOrder, getFetchCode } from '../../../http/api'
 
 class OrderDetail extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
 			isComfirmBtnShow: 'none',
-			isCancelBtnShow: 'inline-block'
+			isCancelBtnShow: 'inline-block',
+			displayModal: false,
+			fetchCode: ''
 		}
 	}
 
@@ -28,6 +30,18 @@ class OrderDetail extends React.Component {
 			})
 		}
 
+	}
+
+	setModalVisible(displayModal) {
+		getFetchCode(this.props.bookOrder.id).then(response =>{
+			this.setState({
+				fetchCode: `data:image/gif;base64,${ response.data}`
+			})
+			this.setState({ displayModal });
+		}).catch(error =>{
+			message.error(error.response.data.message)
+		})
+		
 	}
 
 	comfirmOrder = () => {
@@ -127,6 +141,7 @@ class OrderDetail extends React.Component {
 						{/* <span className={status === "ALREADY_SURE" ? "completed" : "uncompleted"}> */}
 						<span style={{ color: this.getOrderStatusColor(status) }}>
 							{this.getOrderStatus(status)}
+							<span className={status==="ALREADY_SURE"?"QRcode":"hiddenQRcode"} onClick={() => this.setModalVisible(true)}>点击查看停车码</span>
 						</span>
 					</Descriptions.Item>
 				</Descriptions>
@@ -141,6 +156,16 @@ class OrderDetail extends React.Component {
 						<Button onClick={this.cancelOrder}>取消预约</Button>
 					</div>
 				</div>
+				<Modal
+					title="停车码"
+					centered
+					visible={this.state.displayModal}
+					onOk={() => this.setModalVisible(false)}
+					onCancel={() => this.setModalVisible(false)}
+					footer={null}
+				>
+					<img src={this.state.fetchCode} alt="fetchCode" className="fetchCodeImg" />
+				</Modal>
 			</div>
 		)
 	}

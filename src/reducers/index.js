@@ -1,17 +1,13 @@
 const bookOrder = sessionStorage.getItem('bookOrder')?JSON.parse(sessionStorage.getItem('bookOrder')):{};
 const parkingLot = sessionStorage.getItem('parkingLot')?JSON.parse(sessionStorage.getItem('parkingLot')):{};
 const userInformation = sessionStorage.getItem('userInformation')?JSON.parse(sessionStorage.getItem('userInformation')):{};
-const emptyPosition = sessionStorage.getItem('emptyPosition')?JSON.parse(sessionStorage.getItem('emptyPosition')):{};
 const defaultState = {
     bookOrder,
     parkingLot,
     userInformation,
-    emptyPosition,
     isModalVisible: false,
     userInfo:null
 };
-
-
 
 
 export default (state = defaultState, action) => {
@@ -62,7 +58,7 @@ export default (state = defaultState, action) => {
             return stateCopy
         }
         case 'SAVE_EMPTYPOSITION': {
-            sessionStorage.setItem('emptyPosition', JSON.stringify(action.emptyPosition));
+            console.log(`看看action:${action.emptyPosition}`)
             stateCopy.emptyPosition = action.emptyPosition
             return stateCopy
         }

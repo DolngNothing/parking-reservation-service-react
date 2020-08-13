@@ -2,6 +2,7 @@ import React from 'react'
 import { Descriptions, Button, notification } from 'antd'
 import './index.scss'
 import PropTypes from 'prop-types';
+import SockJsClient from 'react-stomp';
 import { comfirmOrder, cancelOrder } from '../../../http/api'
 
 class OrderDetail extends React.Component {
@@ -9,7 +10,8 @@ class OrderDetail extends React.Component {
 		super(props)
 		this.state = {
 			isComfirmBtnShow: 'none',
-			isCancelBtnShow: 'inline-block'
+			isCancelBtnShow: 'inline-block',
+			topics:[]
 		}
 	}
 
@@ -31,11 +33,12 @@ class OrderDetail extends React.Component {
 	}
 
 	comfirmOrder = () => {
-		const { id } = this.props.bookOrder
+		const { id,parkingStartTime,parkingEndTime,parkingLotId } = this.props.bookOrder
 		const { bookOrder } = this.props
 		bookOrder.status = "ALREADY_SURE"
 		this.props.setBookOrder(bookOrder)
 		comfirmOrder(id).then((response) => {
+			this.clientRef.sendMessage('/websocket/save', `/${parkingStartTime}/${parkingEndTime}/${parkingLotId}`)
 			if (response.data.status === 'ALREADY_SURE' && response.data.id === id) {
 				notification.success({
 					message: 'Success',
@@ -47,6 +50,8 @@ class OrderDetail extends React.Component {
 				})
 			}
 		})
+		
+
 	}
 
 	cancelOrder = () => {
@@ -97,11 +102,16 @@ class OrderDetail extends React.Component {
 	}
 
 	render() {
-		// console.log(this.props)
 		const { parkingLotName, location, carNumber, parkingStartTime, parkingEndTime, phoneNumber, email, price, status } = this.props.bookOrder
 		const { isComfirmBtnShow, isCancelBtnShow } = this.state
 		return (
 			<div className="booking-content">
+				<SockJsClient
+url='http://localhost:8090/endpoint'
+					topics={this.state.topics}
+					onMessage={(msg) => { alert(msg); }}
+					ref={(client) => { this.clientRef = client }}
+				/>
 				<Descriptions
 					bordered
 					title="订单详情"

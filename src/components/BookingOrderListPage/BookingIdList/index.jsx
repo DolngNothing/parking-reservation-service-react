@@ -15,13 +15,11 @@ class BookingIdList extends React.Component {
     
     componentWillMount() {
       loginTest({
-        "phoneNumber": "13149306738",
-        "password": 456
-      }).then((response) =>{
-        console.log("response", response)
+        "phoneNumber": "18710659057",
+        "password": 123
+      }).then(() =>{
         axios.defaults.withCredentials=true;
-        getOrder(23).then((res) => {
-          console.log(res)
+        getOrder(23).then(() => {
         })
       })
       
@@ -32,8 +30,7 @@ class BookingIdList extends React.Component {
         phoneNumber: "13427560238",
         password: "123"
       }).then(() => {
-        getOrder(23).then((response) => {
-          console.log(response)
+        getOrder(23).then(() => {
         })
       })
     }

@@ -7,7 +7,6 @@ import './index.css'
 class OrderCreatePage extends React.Component {
 
   render() {
-    console.log(`test:${this.props.parkingLot}`);
     return (
       <div className="container">
         <div className="content">

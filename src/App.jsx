@@ -6,6 +6,7 @@ import BookingOrderListContainer from './containers/BookingOrderListContainer'
 import 'antd/dist/antd.css';
 import OrderCreatePageContainer from './containers/OrderCreatePageContainer'
 import OrderDetailContainer from './containers/OrderDetailContainer'
+import Comment from './components/common/comment'
 
 function App() {
   return (

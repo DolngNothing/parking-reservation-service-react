@@ -59,3 +59,7 @@ export const saveEmptyPosition = (emptyPosition) => ({
     type: "SAVE_EMPTYPOSITION",
     emptyPosition
 })
+export const setQrCode = (qrCode) => ({
+    type: "QR_CODE",
+    qrCode
+})

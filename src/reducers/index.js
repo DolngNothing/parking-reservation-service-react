@@ -1,7 +1,7 @@
 const bookOrder = sessionStorage.getItem('bookOrder')?JSON.parse(sessionStorage.getItem('bookOrder')):{};
 const parkingLot = sessionStorage.getItem('parkingLot')?JSON.parse(sessionStorage.getItem('parkingLot')):{};
 const userInformation = sessionStorage.getItem('userInformation')?JSON.parse(sessionStorage.getItem('userInformation')):{};
-const emptyPosition = sessionStorage.getItem('emptyPosition')?JSON.parse(sessionStorage.getItem('emptyPosition')):{};
+const emptyPosition = sessionStorage.getItem('emptyPosition')?JSON.parse(sessionStorage.getItem('emptyPosition')):0;
 const defaultState = {
     bookOrder,
     parkingLot,
@@ -70,6 +70,7 @@ export default (state = defaultState, action) => {
         }
         case 'SAVE_LOGIN_STATUS': {
             stateCopy.userInfo = action.userInfo
+            sessionStorage.setItem('userInformation', JSON.stringify(action.userInfo))
             return stateCopy
         }
         default: {

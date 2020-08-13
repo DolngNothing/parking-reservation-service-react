@@ -120,8 +120,8 @@ class OrderDetail extends React.Component {
 					<Descriptions.Item label="手机">{phoneNumber}</Descriptions.Item>
 					<Descriptions.Item label="邮箱">{email}</Descriptions.Item>
 					<Descriptions.Item label="费用">
+					￥
 						{price}
-						￥
 					</Descriptions.Item>
 					<Descriptions.Item label="订单状态">
 						{/* <span className={status === "ALREADY_SURE" ? "completed" : "uncompleted"}> */}

@@ -25,7 +25,6 @@ class SearchShow extends React.Component {
       if(parkingLots === undefined) {
         parkingLots = []
       }
-      console.log(parkingLots)
         return (
           <div className="search-show-wrapper">
             <div className="address-wrapper">

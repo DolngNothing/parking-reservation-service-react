@@ -21,16 +21,16 @@ class BookingContent extends React.Component {
             </div>
             <div className="booking-content-center">
               <div className="booking-content">
-                {this.props.bookOrder !== {}?(
-<OrderDetail
+                {this.props.bookOrder.id !== undefined?(
+                  <OrderDetail
                   bookOrder={this.props.bookOrder}
                   setBookOrder={this.props.setBookOrder}
-/>
-):''}
+                  />
+                  ):''}
                 
               </div>
             </div>
-            <div className="show-logo">
+            <div className="comment-wrapper">
               <Comment />
             </div>
           </div>

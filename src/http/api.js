@@ -8,10 +8,10 @@ axios.defaults.baseUrl = "http://10.222.29.209:8090"
 
 const baseUrl = 'http://10.222.29.209:8090'
 
-export function getOrder(orderID) {
+export function getOrder(userID) {
     return axios({
         method: 'get',
-        url: `${baseUrl}/parkingOrders?userId=${orderID}`,
+        url: `${baseUrl}/parkingOrders?userId=${userID}`,
         withCredentials: true
     })
 }

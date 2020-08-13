@@ -6,8 +6,8 @@ class OrderDetailPage extends React.Component {
         return (
             <div className="order-detail-page">
                 <OrderDetail
-bookOrder={this.props.bookOrder}
-                            setBookOrder={this.props.setBookOrder}
+                    bookOrder={this.props.bookOrder}
+                    setBookOrder={this.props.setBookOrder}
                 />
             </div>
         )

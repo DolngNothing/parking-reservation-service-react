@@ -33,6 +33,8 @@ class Index extends React.Component {
               setParkingLot={this.props.setParkingLot}
             />
             <CollectionCreateForm
+              changeValidStatus={this.props.changeValidStatus}
+              flag={this.props.flag}
               saveLoginStatus={this.props.saveLoginStatus}
               isModalVisible={this.props.isModalVisible}
               changeVisible={this.props.changeVisible}

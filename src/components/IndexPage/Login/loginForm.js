@@ -5,9 +5,9 @@ import './index.css'
 
 const valitype = ['', 'success', 'error'];
 const phoneValit = /^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/;
-let flag = 0;
+
 export const CollectionCreateForm = (props) => {
-  const {changeVisible, isModalVisible, saveLoginStatus} = props;
+  const {changeVisible, isModalVisible, saveLoginStatus,changeValidStatus, flag} = props;
   const [form] = Form.useForm();
 
   const onCreate = values => {
@@ -26,11 +26,14 @@ export const CollectionCreateForm = (props) => {
           message.success('登陆成功');
           saveLoginStatus(userInfo)
           changeVisible(false);
+          changeValidStatus(0);
         }else{
           changeVisible(true);
+          changeValidStatus(0);
         }
       }).catch(()=>{
         changeVisible(true);
+        changeValidStatus(0);
       })
   };
 
@@ -41,9 +44,9 @@ export const CollectionCreateForm = (props) => {
 
   const isPhoneNo = (e) => {
     if (phoneValit.test(e.target.value)) {
-      flag = 1;
+      changeValidStatus(1);
     } else {
-      flag = 2;
+      changeValidStatus(2);
     }
 }
 
@@ -62,8 +65,7 @@ export const CollectionCreateForm = (props) => {
             form.resetFields();
             onCreate(values);
           })
-          .catch(info => {
-            console.log('Validate Failed:', info);
+          .catch(() => {
           });
       }}
     >
@@ -85,15 +87,13 @@ export const CollectionCreateForm = (props) => {
         >
             <Input
                 rules={[{ required: true }]}
-                onBlur={isPhoneNo}
+                onChange={isPhoneNo}
                 required
             />
         </Form.Item>
         <Form.Item
-            help="密码不能为空"
             label="Password"
             name="password"
-            validateStatus={valitype[flag]}
             rules={[{ required: true, message: '密码不能为空' }]}
             hasFeedback
         >

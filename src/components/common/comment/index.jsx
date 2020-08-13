@@ -2,8 +2,6 @@ import { Rate , Input } from 'antd';
 import React from 'react'
 import './index.scss'
 
-
-
 const { TextArea } = Input;
 
 class Comment extends React.Component {

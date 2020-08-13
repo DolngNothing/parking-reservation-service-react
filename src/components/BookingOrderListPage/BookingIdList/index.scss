@@ -1,15 +1,19 @@
 @import '../../../css/global.scss';
 
 .booking-id-list {
+    float: left;
+    width: 330px;
     height: 100%;
-    width: 15%;
-    background: #69b7ff;
+    border-right: 1px gainsboro solid;
     position: absolute;
     color: white;
     display: flex;
     align-items: center;
     flex-direction: column;
     overflow: scroll;
+    padding-top: 30px;
+    padding-bottom: 80px;
+    margin-bottom: 80px;
     &::-webkit-scrollbar {
         display:none
     } 
@@ -21,6 +25,9 @@
         box-sizing: border-box;
         margin: 0 40px;
     }
+    .booking-order-selected {
+        background: red;
+    }
     .booking-order-wrapper {
         cursor: pointer;
         margin-bottom: 20px;
@@ -31,7 +38,10 @@
         color: #777;
         flex-direction: column;
         align-items: center;
-        height: 85px;
+        height: 100px;
+        border: 1px gainsboro solid;
+        padding: 10px;
+        box-shadow: 0.7px 0.9px 1px #999;
         .parking-lot-msg-wrapper {
             margin-top: 5px;
             font-size: 15px;
@@ -80,5 +90,14 @@
                 }
             }
         }
+    }
+    .active {
+        background-color: #fafafa;
+    }
+    .normal {
+        background-color: white;
+    }
+    .normal:hover{
+        width: 86%;
     }
 }

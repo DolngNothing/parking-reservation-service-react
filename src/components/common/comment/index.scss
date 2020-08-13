@@ -19,7 +19,10 @@
         }
 
     }
-    .commit-wrapper {
-
+    .commit-wrapper button{
+        background-color: #fafafa;
+        width: 200px;
+        border: 1px gray solid;
+        cursor: pointer;
     }
 }

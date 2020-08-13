@@ -33,6 +33,15 @@ class BookingIdList extends React.Component {
     return "已取消"
   }
 
+  getOrderStatusColor = (status) => {
+		if (status === "ALREADY_SURE") {
+			return "green"
+		} if (status === "WAIT_FOR_SURE") {
+			return "orange"
+		}
+		return "gray"
+	}
+
   selectOrder = (item) => {
     this.props.setBookOrder(item)
   }
@@ -62,7 +71,7 @@ class BookingIdList extends React.Component {
                 <span className="month">{item.parkingStartTime}</span>
               </div>
               <div className="status-wrapper">
-                <span className="status">{this.getOrderStatus(item.status)}</span>
+                <span className="status" style={{ color: this.getOrderStatusColor(item.status) }}>{this.getOrderStatus(item.status)}</span>
               </div>
             </div>
           </div>

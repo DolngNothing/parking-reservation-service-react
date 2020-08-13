@@ -17,9 +17,16 @@ class OrderDetail extends React.Component {
 		}
 	}
 
+	componentWillMount(){
+		const { parkingStartTime,status } = this.props.bookOrder;
+		const date = new Date().getTime()
+		console.log(date, Date.parse(parkingStartTime))
+		if (date >= Date.parse(parkingStartTime)) {
+			this.setState({
+				isCancelBtnShow: 'none'
+			})
+		}
 
-	componentWillReceiveProps(nextProps) {
-		const { status } = nextProps.bookOrder
 		if (status === "WAIT_FOR_SURE") {
 			this.setState({
 				isComfirmBtnShow: 'inline-block',
@@ -34,6 +41,33 @@ class OrderDetail extends React.Component {
 			this.setState({
 				isCancelBtnShow: 'none',
 				isComfirmBtnShow: 'none',
+			})
+		}
+	}
+
+	componentWillReceiveProps(nextProps) {
+		const { status,parkingStartTime } = nextProps.bookOrder
+		if (status === "WAIT_FOR_SURE") {
+			this.setState({
+				isComfirmBtnShow: 'inline-block',
+				isCancelBtnShow: 'inline-block'
+			})
+		} else if (status === "ALREADY_SURE") {
+			this.setState({
+				isComfirmBtnShow: 'none',
+				isCancelBtnShow: 'inline-block'
+			})
+		} else {
+			this.setState({
+				isCancelBtnShow: 'none',
+				isComfirmBtnShow: 'none',
+			})
+		}
+
+		const date = new Date().getTime()
+		if (date >= Date.parse(parkingStartTime)) {
+			this.setState({
+				isCancelBtnShow: 'none'
 			})
 		}
 	}
@@ -120,7 +154,7 @@ class OrderDetail extends React.Component {
 	}
 
 	render() {
-		const { parkingLotName, location, carNumber, parkingStartTime, parkingEndTime, phoneNumber, email, price, status } = this.props.bookOrder
+		const { parkingLotName, location, carNumber, parkingStartTime, parkingEndTime, phoneNumber, price, status } = this.props.bookOrder
 		const { isComfirmBtnShow, isCancelBtnShow } = this.state
 		return (
 			<div className="booking-content">
@@ -146,7 +180,6 @@ class OrderDetail extends React.Component {
 						{parkingEndTime}
 					</Descriptions.Item>
 					<Descriptions.Item label="手机">{phoneNumber}</Descriptions.Item>
-					<Descriptions.Item label="邮箱">{email}</Descriptions.Item>
 					<Descriptions.Item label="费用">
 						￥
 						{price}

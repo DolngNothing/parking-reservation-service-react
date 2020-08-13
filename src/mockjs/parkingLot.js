@@ -7,7 +7,8 @@ module.exports =
     description: "测试测试",
     location: "珠海市拱北",
     type: "室内",
-    avgScore: 5.0
+    avgScore: 5.0,
+    
 },
 {
     "id": 235,

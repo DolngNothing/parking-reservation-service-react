@@ -139,7 +139,7 @@ class SearchShow extends React.Component {
                         <span style={{marginLeft: "10px"}}>价格: {parseInt(item.price)}元</span>
                       </div>
                     </div>
-                    <div className="avg-score">{item.avgScore}</div>
+                    <div className="avg-score">{item.avgScore.toFixed(1)}</div>
               </div>)
                 ) 
                 :parkingLots.filter(element => element.type === this.typeChange(this.state.type)).map((item, index) => <div key={index} 
@@ -155,7 +155,7 @@ class SearchShow extends React.Component {
                                                             <span>距离: {parseInt(item.distance)}M</span>
                                                           </div>
                                                         </div>
-                                                        <div className="avg-score">{item.avgScore}</div>
+                                                        <div className="avg-score">{item.avgScore.toFixed(1)}</div>
                                                   </div>
                 )
                 }

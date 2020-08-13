@@ -1,7 +1,7 @@
 import React from 'react'
 import './index.scss'
 import '../../../css/icon.css'
-import { getOrder, getComment } from '../../../http/api'
+import { getOrder } from '../../../http/api'
 
 
 class BookingIdList extends React.Component {
@@ -44,8 +44,6 @@ class BookingIdList extends React.Component {
 
   selectOrder = (item) => {
     this.props.setBookOrder(item)
-    getComment(item.id).then(() => {
-    })
   }
 
   render() {

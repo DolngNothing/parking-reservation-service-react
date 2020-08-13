@@ -10,13 +10,20 @@ class Comment extends React.Component {
         super(props)
         this.state = {
             starNum: 5,
-            comment: ''
+            comment: '',
+            ifShow: true
         }
+    }
+
+    componentWillReceiveProps() {
+            this.setState({
+                ifShow: true
+            })
     }
 
     onChange = (number) => {
         this.setState({
-            starNum: number
+            starNum: number,
         })
     }
 
@@ -33,11 +40,12 @@ class Comment extends React.Component {
             content: comment,
             parkingLotId: bookOrder.parkingLotId
         }).then(() => {
-            _this.setState = {
+            _this.setState({
                 score: 5,
-                comment: ''
-            }
-            document.getElementsByClassName("ant-input")[0].value = ''
+                comment: '',
+                ifShow: false
+            }) 
+            alert("评论成功！")
         })
     }
 
@@ -48,7 +56,7 @@ class Comment extends React.Component {
     }
 
     render() {
-        return (
+        return this.state.ifShow?(
             <div className="comment">
                 <div className="star-wrapper">
                     <Rate allowHalf defaultValue={this.state.starNum} onChange={this.onChange} />
@@ -61,7 +69,7 @@ class Comment extends React.Component {
                     <button type="submit" onClick={this.commitComment}>提交</button>
                 </div>
             </div>
-)
+        ):''
     }
 }
 

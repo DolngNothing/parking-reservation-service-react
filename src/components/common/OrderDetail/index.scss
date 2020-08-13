@@ -37,3 +37,24 @@
 .ant-descriptions-item-content{
     text-align: left;
 }
+.QRcode{
+    float: right;
+    margin-right: 100px;
+    color: black;
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: 12px;
+}
+.hiddenQRcode{
+    display: none;
+}
+.QRcode:hover{
+    color: cornflowerblue;
+}
+.fetchCodeModal{
+    width: 300px !important;
+    margin-left: 100px !important;
+}
+.fetchCodeImg{
+    margin-left: 26px;
+}

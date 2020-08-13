@@ -17,6 +17,17 @@ class OrderDetail extends React.Component {
 		}
 	}
 
+	componentWillMount(){
+		const { parkingStartTime } = this.props.bookOrder;
+		const date = new Date().getTime()
+		console.log(date, Date.parse(parkingStartTime))
+		if (date >= Date.parse(parkingStartTime)) {
+			this.setState({
+				isCancelBtnShow: 'none'
+			})
+		}
+	}
+
 	componentWillReceiveProps(nextProps) {
 		const { status,parkingStartTime } = nextProps.bookOrder
 		if (status === "WAIT_FOR_SURE") {

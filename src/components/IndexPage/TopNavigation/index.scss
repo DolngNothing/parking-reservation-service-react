@@ -19,6 +19,11 @@
     font-weight: bolder;
     @include center();
     border-right: 1px solid #aaa;
+    .img {
+      width: 100%;
+      height: 100%;
+      padding: 5px;
+    }
   }
   .booking-enter {
     width: 10%;
@@ -27,7 +32,7 @@
     font-weight: bolder;
     @include center;
     cursor: pointer;
-    color: rgb(102, 143, 255);
+    color: #00479d;
   }
   .address-input-wrapper {
       margin-left: 100px;

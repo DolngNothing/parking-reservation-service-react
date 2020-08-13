@@ -60,6 +60,7 @@ export default (state = defaultState, action) => {
             return stateCopy
         }
         case 'SAVE_EMPTYPOSITION': {
+            console.log(action.emptyPosition)
             stateCopy.emptyPosition = action.emptyPosition
             return stateCopy
         }

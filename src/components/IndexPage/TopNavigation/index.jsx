@@ -2,9 +2,9 @@ import React from 'react'
 import BMap from 'BMap'
 import AMap from 'AMap'
 import './index.scss'
-import { Link } from "react-router-dom";
 import { getParkingLots, parkingLots } from '../../../http/api'
 import { Button } from 'antd';
+import logo from './logo.jpg'
 
 class TopNavigation extends React.Component {
 
@@ -133,7 +133,7 @@ class TopNavigation extends React.Component {
     return (
       <div className="top-navigation-wrapper">
         <div className="about-team">
-          <Link to="/">关于我们</Link>
+          <img src={logo} className="img"/>
         </div>
         <div className="booking-enter">
           <span onClick={this.jumpToOrderList}>订单查询</span>

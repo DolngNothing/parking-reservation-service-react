@@ -72,7 +72,8 @@ class BookInfoForm extends React.Component {
     if (liscen !== '' && phone !== '' && startTime !== '' && endTime !== '') {
       const order = {
         carNumber: liscen, phone,
-         parkingStartTime: startTime, parkingEndTime: endTime
+         parkingStartTime: startTime, parkingEndTime: endTime,
+         email:"1610692147@qq.com"
         , parkingLotId: this.props.parkingLot.id
       }
       saveOrder(order).then((response) => {

@@ -1,8 +1,8 @@
 import React from 'react'
 import './index.scss'
 import '../../../css/icon.css'
-import OrderDetail from '../../common/OrderDetail'
 import { Link } from "react-router-dom";
+import OrderDetail from '../../common/OrderDetail'
 import Comment from '../../common/comment'
 
 class BookingContent extends React.Component {
@@ -21,14 +21,16 @@ class BookingContent extends React.Component {
             </div>
             <div className="booking-content-center">
               <div className="booking-content">
-                {this.props.bookOrder !== {}?(<OrderDetail
+                {this.props.bookOrder !== {}?(
+<OrderDetail
                   bookOrder={this.props.bookOrder}
                   setBookOrder={this.props.setBookOrder}
-                />):''}
+/>
+):''}
                 
               </div>
             </div>
-            <div className="show-logo" >
+            <div className="show-logo">
               <Comment />
             </div>
           </div>

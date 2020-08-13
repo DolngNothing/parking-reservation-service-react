@@ -22,17 +22,19 @@ class Comment extends React.Component {
     }
 
     render() {
-        return <div className="comment-wrapper">
+        return (
+<div className="comment-wrapper">
             <div className="star-wrapper">
-                <Rate allowHalf defaultValue={this.state.starNum} onChange={this.onChange}/>
+                <Rate allowHalf defaultValue={this.state.starNum} onChange={this.onChange} />
             </div>
             <div className="comment-text">
-                <textarea name="" id="" cols="160" rows="10"></textarea>
+                <textarea name="" id="" cols="160" rows="10" />
             </div>
             <div className="commit-wrapper">
-                <button onClick={this.commitComment}>提交</button>
+                <button type="submit" onClick={this.commitComment}>提交</button>
             </div>
-        </div>
+</div>
+)
     }
 }
 

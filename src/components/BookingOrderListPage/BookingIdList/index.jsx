@@ -1,8 +1,7 @@
 import React from 'react'
 import './index.scss'
 import '../../../css/icon.css'
-import axios from 'axios'
-import { getOrder, loginTest, userLogin } from '../../../http/api'
+import { getOrder } from '../../../http/api'
 
 
 class BookingIdList extends React.Component {
@@ -37,14 +36,14 @@ class BookingIdList extends React.Component {
     }
 
     render() {
-        let { orderList } = this.state
+        const { orderList } = this.state
         return (
           <div className="booking-id-list">
             <div className="title-text">
 <span className="icon-booking" />
 历史订单
             </div>
-            {orderList.map((item, index) => 
+            {orderList.map((item, index) => (
               <div className="booking-order-wrapper" key={index} onClick={() => {this.selectOrder(item)}}>
               <div className="parking-lot-msg-wrapper">
                 <div className="parking-lot-name-wrapper">
@@ -64,7 +63,8 @@ class BookingIdList extends React.Component {
             <span className="status">{this.getOrderStatus(item.status)}</span>
                 </div>
               </div>
-            </div>
+              </div>
+            )
             )}
             
           </div>

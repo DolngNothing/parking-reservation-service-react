@@ -25,7 +25,7 @@ class ParkingLotInfo extends React.Component {
         const { name, description } = this.props.parkingLot
         const { lotPic } = this.state
         const { emptyPosition } = this.props
-        console.log("emptyPosition"+emptyPosition)
+        console.log(`emptyPosition${emptyPosition}`)
         return (
             <div>
                 <Card

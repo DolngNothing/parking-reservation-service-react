@@ -22,6 +22,7 @@ class Index extends React.Component {
               setDestination={this.props.setDestination}
               setParkingLots={this.props.setParkingLots}
               changeVisible={this.props.changeVisible}
+              history={this.props.history}
               userInfo={this.props.userInfo}
             />
             <SearchShow

@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types';
+import SockJsClient from 'react-stomp';
 import { Form, Input, Button, DatePicker, notification } from 'antd';
 import { CarOutlined, PhoneOutlined, MailOutlined } from '@ant-design/icons';
 import locale from 'antd/es/locale/zh_CN';
@@ -24,7 +25,8 @@ class BookInfoForm extends React.Component {
       phone: '',
       mail: '',
       startTime: '',
-      endTime: ''
+      endTime: '',
+      topics:['/topic/hello']
     }
   }
 
@@ -62,12 +64,23 @@ class BookInfoForm extends React.Component {
     if (e != null) {
       const startTime = new Date(e[0]._d).getTime(); // 本地时间距 1970 年 1 月 1 日午夜（GMT 时间）之间的毫秒数
       const endTime = new Date(e[1]._d).getTime();
-      console.log(`${startTime} ${endTime}`);
       this.setState({ startTime })
       this.setState({ endTime })
     } else {
       this.setState({ startTime: '' })
       this.setState({ endTime: '' })
+    }
+    // 订阅
+    if (e != null) {
+      const startTime = new Date(e[0]._d).getTime(); // 本地时间距 1970 年 1 月 1 日午夜（GMT 时间）之间的毫秒数
+      const endTime = new Date(e[1]._d).getTime();
+
+      const {id} = this.props.parkingLot
+      this.setState({ topics:[`/topic/${startTime}/${endTime}/${id}`,'/topic/hello']  },()=>{
+        this.clientRef.sendMessage('/register', `/${startTime}/${endTime}/${id}`)
+      })
+    } else {
+      console.log("什么都没有");
     }
   }
 
@@ -118,6 +131,12 @@ class BookInfoForm extends React.Component {
     const { mailValiType } = this.state;
     return (
       <div>
+        <SockJsClient
+url='http://localhost:8090/endpoint'
+          topics={this.state.topics}
+          onMessage={(emptyPosition) => { this.props.saveEmptyPosition(emptyPosition); }}
+          ref={(client) => { this.clientRef = client }}
+        />
         <Form
           layout="horizontal"
         >
@@ -161,7 +180,7 @@ class BookInfoForm extends React.Component {
             />
           </Form.Item>
           <Form.Item
-            rules={[{ required: true, message: 'Please input your password!' }]}
+            rules={[{ required: true }]}
             hasFeedback
             required
             size="large"
@@ -172,12 +191,12 @@ class BookInfoForm extends React.Component {
               onChange={this.setDate}
               disabledDate={this.disabledDate}
               locale={locale}
-              format="YYYY年MM月DD日 小时:HH"
+              format="YYYY年MM月DD日 HH:00"
             />
           </Form.Item>
           <Form.Item>
             <Button type="primary" htmlType="submit" onClick={this.saveBookForm}>
-              Submit
+              提交预约
             </Button>
           </Form.Item>
         </Form>
@@ -189,7 +208,8 @@ class BookInfoForm extends React.Component {
 BookInfoForm.propTypes = {
   parkingLot: PropTypes.any.isRequired,
   setBookOrder: PropTypes.func.isRequired,
-  history: PropTypes.object.isRequired
+  history: PropTypes.object.isRequired,
+  saveEmptyPosition:PropTypes.func.isRequired
 }
 
 export default BookInfoForm;

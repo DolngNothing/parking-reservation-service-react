@@ -77,3 +77,10 @@ export function loginTest(userInfo) {
         withCredentials: true
     })
 }
+
+export function getCommentsByParkingLotId(parkingLotId) {
+    return axios({
+        method: 'get',
+        url: `${baseUrl}/comments?parkingLotId=${parkingLotId}`
+    })
+}

@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types';
 import SockJsClient from 'react-stomp';
 import { Form, Input, Button, DatePicker, notification } from 'antd';
-import { CarOutlined, PhoneOutlined, MailOutlined } from '@ant-design/icons';
+import { CarOutlined, PhoneOutlined } from '@ant-design/icons';
 import locale from 'antd/es/locale/zh_CN';
 import { saveOrder } from '../../../http/api'
 
@@ -12,7 +12,6 @@ const { RangePicker } = DatePicker;
 const licenseVailt = /^(([京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领][A-Z](([0-9]{5}[DF])|([DF]([A-HJ-NP-Z0-9])[0-9]{4})))|([京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领][A-Z][A-HJ-NP-Z0-9]{4}[A-HJ-NP-Z0-9挂学警港澳使领]))$/;
 const valitype = ['', 'success', 'error'];
 const phoneValit = /^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/;
-const mailValit = /^[a-zA-Z0-9.!#$%&'*+=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 class BookInfoForm extends React.Component {
 
   constructor(props) {
@@ -20,10 +19,8 @@ class BookInfoForm extends React.Component {
     this.state = {
       phoneValitType: 0,
       liscenValiType: 0,
-      mailValiType: 0,
       liscen: '',
       phone: '',
-      mail: '',
       startTime: '',
       endTime: '',
       topics: ['/topic/hello']
@@ -50,15 +47,6 @@ class BookInfoForm extends React.Component {
     }
   }
 
-  isEmailNo = (e) => {
-    if (mailValit.test(e.target.value)) {
-      this.setState({ mailValiType: 1 })
-      this.setState({ mail: e.target.value })
-    } else {
-      this.setState({ mailValiType: 2 })
-      this.setState({ mail: '' })
-    }
-  }
 
   setDate = (e) => {
     const { id } = this.props.parkingLot
@@ -80,11 +68,11 @@ class BookInfoForm extends React.Component {
   }
 
   saveBookForm = () => {
-    const { liscen, phone, mail, startTime, endTime } = this.state;
-    if (liscen !== '' && phone !== '' && mail !== '' && startTime !== '' && endTime !== '') {
+    const { liscen, phone, startTime, endTime } = this.state;
+    if (liscen !== '' && phone !== '' && startTime !== '' && endTime !== '') {
       const order = {
         carNumber: liscen, phone,
-        email: mail, parkingStartTime: startTime, parkingEndTime: endTime
+         parkingStartTime: startTime, parkingEndTime: endTime
         , parkingLotId: this.props.parkingLot.id
       }
       saveOrder(order).then((response) => {
@@ -122,7 +110,6 @@ class BookInfoForm extends React.Component {
   render() {
     const { liscenValiType } = this.state;
     const { phoneValitType } = this.state;
-    const { mailValiType } = this.state;
     console.log(this.state.topics);
     return (
       <div>
@@ -157,19 +144,6 @@ class BookInfoForm extends React.Component {
               rules={[{ required: true }]}
               prefix={<PhoneOutlined />}
               onBlur={this.isPhoneNo}
-              required
-              size="large"
-            />
-          </Form.Item>
-          <Form.Item
-            help="请填写正确的邮箱号码"
-            validateStatus={valitype[mailValiType]}
-            hasFeedback
-          >
-            <Input
-              rules={[{ required: true }]}
-              prefix={<MailOutlined />}
-              onBlur={this.isEmailNo}
               required
               size="large"
             />

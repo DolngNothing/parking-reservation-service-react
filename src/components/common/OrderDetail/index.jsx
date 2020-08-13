@@ -23,7 +23,6 @@ class OrderDetail extends React.Component {
 				isComfirmBtnShow: 'inline-block',
 				isCancelBtnShow: 'inline-block'
 			})
-			console.log("test")
 		}else if(status === "ALREADY_SURE") {
 			this.setState({
 				isComfirmBtnShow: 'none',

@@ -1,7 +1,8 @@
-import { Rate , Input } from 'antd';
+import { Rate , Input , message, Button } from 'antd';
 import React from 'react'
 import './index.scss'
 import { addComment } from '../../../http/api'
+
 
 const { TextArea } = Input;
 
@@ -45,7 +46,7 @@ class Comment extends React.Component {
                 comment: '',
                 ifShow: false
             }) 
-            alert("评论成功！")
+            message.success('评论成功');
         })
     }
 
@@ -65,8 +66,8 @@ class Comment extends React.Component {
                     {/* <textarea name="" id="" cols="160" rows="10" /> */}
                     <TextArea rows={4} className="comtent-input" value={this.state.comment} onChange={this.commentChange} />
                 </div>
-                <div className="commit-wrapper">
-                    <button type="submit" onClick={this.commitComment}>提交</button>
+                <div className="commit-wrapper" onClick={this.commitComment}>
+                    <Button>提交</Button>
                 </div>
             </div>
         ):''
